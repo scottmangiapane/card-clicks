@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_margin"
-            android:text="The goal of this game is to find as many cliques as you can before the timer runs out. A clique is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card in the clique."
+            android:text="The goal of this game is to find as many cliques as you can before the timer runs out. A clique is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card."
             android:textSize="@dimen/activity_text_size" />
 
         <ImageView

@@ -14,8 +14,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 public class StandardGame extends AppCompatActivity {
     public static AppCompatActivity gameActivity;
     private boolean backPressable;
