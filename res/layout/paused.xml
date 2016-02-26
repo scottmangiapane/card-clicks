@@ -38,7 +38,6 @@
         android:id="@+id/button_resume_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_quit_to_menu"
         android:layout_marginLeft="@dimen/activity_margin"
         android:layout_marginRight="@dimen/activity_margin"
         android:layout_marginTop="@dimen/activity_margin"

@@ -84,49 +84,44 @@ public class StandardGame extends AppCompatActivity {
                         if (selectedCard1x == -1) {
                             selectedCard1x = ia;
                             selectedCard1y = ib;
-                        } else {
-                            if (selectedCard1x == ia && selectedCard1y == ib) {
-                                if (selectedCard2x != -1) {
-                                    selectedCard1x = selectedCard2x;
-                                    selectedCard1y = selectedCard2y;
-                                    selectedCard2x = -1;
-                                    selectedCard2y = -1;
-                                } else {
-                                    selectedCard1x = -1;
-                                    selectedCard1y = -1;
-                                }
+                        } else if (selectedCard1x == ia && selectedCard1y == ib) {
+                            if (selectedCard2x != -1) {
+                                selectedCard1x = selectedCard2x;
+                                selectedCard1y = selectedCard2y;
+                                selectedCard2x = -1;
+                                selectedCard2y = -1;
                             } else {
-                                if (selectedCard2x == -1) {
-                                    selectedCard2x = ia;
-                                    selectedCard2y = ib;
-                                } else {
-                                    if (selectedCard1x == ia && selectedCard1y == ib) {
-                                        selectedCard1x = -1;
-                                        selectedCard1y = -1;
-                                    } else {
-                                        if (selectedCard2x == ia && selectedCard2y == ib) {
-                                            selectedCard2x = -1;
-                                            selectedCard2y = -1;
-                                        } else {
-                                            selectedCard3x = ia;
-                                            selectedCard3y = ib;
-                                            refreshDraw();
-                                            if (isSet(selectedCard1x, selectedCard1y, selectedCard2x, selectedCard2y, selectedCard3x, selectedCard3y)) {
-                                                finalScore.setText("Score: " + ++score);
-                                                setNewCard(selectedCard1x, selectedCard1y);
-                                                setNewCard(selectedCard2x, selectedCard2y);
-                                                setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
-                                            }
-                                            selectedCard1x = -1;
-                                            selectedCard1y = -1;
-                                            selectedCard2x = -1;
-                                            selectedCard2y = -1;
-                                            selectedCard3x = -1;
-                                            selectedCard3y = -1;
-                                        }
-                                    }
-                                }
+                                selectedCard1x = -1;
+                                selectedCard1y = -1;
                             }
+                        } else if (selectedCard2x == -1) {
+                            selectedCard2x = ia;
+                            selectedCard2y = ib;
+                        } else if (selectedCard1x == ia && selectedCard1y == ib) {
+                            selectedCard1x = -1;
+                            selectedCard1y = -1;
+                        } else if (selectedCard2x == ia && selectedCard2y == ib) {
+                            selectedCard2x = -1;
+                            selectedCard2y = -1;
+                        } else {
+                            selectedCard3x = ia;
+                            selectedCard3y = ib;
+                            refreshDraw();
+                            if (isSet(selectedCard1x, selectedCard1y,
+                                    selectedCard2x, selectedCard2y,
+                                    selectedCard3x, selectedCard3y)) {
+                                finalScore.setText("Score: " + ++score);
+                                setNewCard(selectedCard1x, selectedCard1y);
+                                setNewCard(selectedCard2x, selectedCard2y);
+                                setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
+                            }
+                            selectedCard1x = -1;
+                            selectedCard1y = -1;
+                            selectedCard2x = -1;
+                            selectedCard2y = -1;
+                            selectedCard3x = -1;
+                            selectedCard3y = -1;
+
                         }
                         refreshDraw();
                     }
@@ -143,8 +138,13 @@ public class StandardGame extends AppCompatActivity {
         buttonQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new QuitDialog();
-                newFragment.show(getSupportFragmentManager(), "Quit");
+                if (backPressable) {
+                    DialogFragment newFragment = new QuitDialog();
+                    newFragment.show(getSupportFragmentManager(), "Quit");
+                } else {
+                    finish();
+                    overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
+                }
             }
         });
         refreshAllValues();
@@ -195,7 +195,9 @@ public class StandardGame extends AppCompatActivity {
         return false;
     }
 
-    public boolean isSetShape(int card1x, int card1y, int card2x, int card2y, int card3x, int card3y) {
+    public boolean isSetShape(int card1x, int card1y,
+                              int card2x, int card2y,
+                              int card3x, int card3y) {
         if (cards[card1x][card1y].shape.equals(cards[card2x][card2y].shape)
                 && cards[card2x][card2y].shape.equals(cards[card3x][card3y].shape))
             return true;
@@ -206,7 +208,9 @@ public class StandardGame extends AppCompatActivity {
         return false;
     }
 
-    public boolean isSetType(int card1x, int card1y, int card2x, int card2y, int card3x, int card3y) {
+    public boolean isSetType(int card1x, int card1y,
+                             int card2x, int card2y,
+                             int card3x, int card3y) {
         if (cards[card1x][card1y].type.equals(cards[card2x][card2y].type)
                 && cards[card2x][card2y].type.equals(cards[card3x][card3y].type))
             return true;
@@ -247,7 +251,9 @@ public class StandardGame extends AppCompatActivity {
                 if ((i1 != selectedCard1x || i2 != selectedCard1y)
                         && (i1 != selectedCard2x || i2 != selectedCard2y)
                         && (i1 != selectedCard3x || i2 != selectedCard3y))
-                    if (selectedCard1x + selectedCard1y + selectedCard2x + selectedCard2y + selectedCard3x + selectedCard3y > -6)
+                    if (selectedCard1x + selectedCard1y
+                            + selectedCard2x + selectedCard2y
+                            + selectedCard3x + selectedCard3y > -6)
                         gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
             }
     }
@@ -797,7 +803,8 @@ public class StandardGame extends AppCompatActivity {
                 }
 
                 public void onFinish() {
-                    SharedPreferences settings = getApplicationContext().getSharedPreferences("SCORE_DATA", Context.MODE_PRIVATE);
+                    SharedPreferences settings = getApplicationContext()
+                            .getSharedPreferences("SCORE_DATA", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = settings.edit();
                     if (score > settings.getInt("HIGH_SCORE_3", 0)) {
                         if (score > settings.getInt("HIGH_SCORE_2", 0)) {
@@ -848,7 +855,8 @@ public class StandardGame extends AppCompatActivity {
                                 }
                             });
                         }
-                    finalScore.setText("Score: " + score + "     High: " + settings.getInt("HIGH_SCORE_1", 0));
+                    finalScore.setText("Score: " + score + "     High: "
+                            + settings.getInt("HIGH_SCORE_1", 0));
                     timeCount.setText("00:00");
                 }
             }.start();
