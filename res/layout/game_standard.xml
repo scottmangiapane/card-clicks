@@ -7,23 +7,17 @@
     android:padding="@dimen/activity_dimen_screen_border"
     tools:context=".StandardGame">
 
-    <LinearLayout
-        android:id="@+id/time_count_frame"
+    <TextView
+        android:id="@+id/time_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#5f7c8a"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/time_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/activity_dimen_large"
-            android:text="--:--"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="@dimen/activity_text_timer" />
-    </LinearLayout>
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_large"
+        android:text="--:--"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/activity_text_timer"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/helpAndPauseButtons"
