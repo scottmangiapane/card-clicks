@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 
 public class StandardGame extends AppCompatActivity {
     public static AppCompatActivity gameActivity;
-    private boolean backPressable;
+    private boolean gameOngoing;
     private int score;
     private int secondsRemaining;
     private int selectedCard1x;
@@ -27,7 +26,7 @@ public class StandardGame extends AppCompatActivity {
     private int selectedCard3y;
     private Card[][] cards;
     private CountDownTimer timer;
-    private TextView buttonPause;
+    private TextView buttonPauseRestart;
     private TextView buttonQuit;
     private ImageView[][] gridDraw;
     private TextView finalScore;
@@ -42,9 +41,9 @@ public class StandardGame extends AppCompatActivity {
             getWindow().setNavigationBarColor(Color.parseColor("#303030"));
         }
         gameActivity = this;
-        backPressable = true;
+        gameOngoing = true;
         score = 0;
-        secondsRemaining = 121000;
+        secondsRemaining = 3000; //121000;
         selectedCard1x = -1;
         selectedCard1y = -1;
         selectedCard2x = -1;
@@ -52,7 +51,7 @@ public class StandardGame extends AppCompatActivity {
         selectedCard3x = -1;
         selectedCard3y = -1;
         cards = new Card[4][3];
-        buttonPause = (TextView) findViewById(R.id.button_pause);
+        buttonPauseRestart = (TextView) findViewById(R.id.button_pause_restart);
         buttonQuit = (TextView) findViewById(R.id.button_help);
         gridDraw = new ImageView[][]{
                 {(ImageView) findViewById(R.id.imageView_0_0),
@@ -127,7 +126,7 @@ public class StandardGame extends AppCompatActivity {
                     }
                 });
             }
-        buttonPause.setOnClickListener(new View.OnClickListener() {
+        buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StandardGame.this, Paused.class);
@@ -138,13 +137,8 @@ public class StandardGame extends AppCompatActivity {
         buttonQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (backPressable) {
-                    DialogFragment newFragment = new QuitDialog();
-                    newFragment.show(getSupportFragmentManager(), "Quit");
-                } else {
-                    finish();
-                    overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
-                }
+                finish();
+                overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
             }
         });
         refreshAllValues();
@@ -775,7 +769,7 @@ public class StandardGame extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (backPressable) {
+        if (gameOngoing) {
             Intent intent = new Intent(StandardGame.this, Paused.class);
             startActivity(intent);
             overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
@@ -786,14 +780,14 @@ public class StandardGame extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        if (backPressable)
+        if (gameOngoing)
             timer.cancel();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (backPressable) {
+        if (gameOngoing) {
             timer = new CountDownTimer(secondsRemaining, 1000) {
                 public void onTick(long millisUntilFinished) {
                     secondsRemaining = (int) millisUntilFinished;
@@ -821,7 +815,7 @@ public class StandardGame extends AppCompatActivity {
                         }
                     }
                     editor.apply();
-                    backPressable = false;
+                    gameOngoing = false;
                     selectedCard1x = -1;
                     selectedCard1y = -1;
                     selectedCard2x = -1;
@@ -837,9 +831,12 @@ public class StandardGame extends AppCompatActivity {
                                     grid[i2 / 3][i2 % 3] = 1;
                                     grid[i3 / 3][i3 % 3] = 1;
                                 }
-                    buttonPause.setOnClickListener(new View.OnClickListener() {
+                    buttonPauseRestart.setBackgroundColor(getResources().getColor(R.color.red));
+                    buttonPauseRestart.setText("RESTART");
+                    buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            gameActivity.recreate();
                         }
                     });
                     for (int i1 = 0; i1 < cards.length; i1++)
