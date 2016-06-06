@@ -8,12 +8,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageView buttonHelp;
-    private ImageView buttonPlay;
+    private TextView buttonHelp;
+    private TextView buttonPlay;
     private TextView highScore1;
     private TextView highScore2;
     private TextView highScore3;
@@ -27,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.parseColor("#303030"));
             getWindow().setNavigationBarColor(Color.parseColor("#303030"));
         }
-        buttonHelp = (ImageView) findViewById(R.id.button_about);
-        buttonPlay = (ImageView) findViewById(R.id.button_play);
+        buttonHelp = (TextView) findViewById(R.id.button_about);
+        buttonPlay = (TextView) findViewById(R.id.button_play);
         highScore1 = (TextView) findViewById(R.id.score_1);
         highScore2 = (TextView) findViewById(R.id.score_2);
         highScore3 = (TextView) findViewById(R.id.score_3);

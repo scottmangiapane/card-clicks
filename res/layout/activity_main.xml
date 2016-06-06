@@ -4,10 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="@dimen/activity_dimen_screen_border"
     tools:context=".MainActivity">
 
     <ImageView
@@ -15,127 +12,100 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:src="@drawable/logo"
-        android:layout_marginRight="@dimen/activity_margin" />
+        android:src="@drawable/logo" />
 
-    <ImageView
-        android:id="@+id/button_scores"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginRight="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin"
-        android:adjustViewBounds="true"
-        android:src="@drawable/button_scores" />
+        android:layout_marginTop="@dimen/activity_dimen_large"
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_small"
+        android:text="HIGH SCORES"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/activity_text"
+        android:textStyle="bold" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-        <ImageView
-            android:id="@+id/border_score_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_margin"
-            android:layout_marginRight="@dimen/activity_margin"
-            android:layout_marginTop="@dimen/activity_margin_half"
-            android:adjustViewBounds="true"
-            android:src="@drawable/border"/>
+        android:layout_marginTop="@dimen/activity_dimen_small"
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_extra_small">
 
         <TextView
             android:id="@+id/score_1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/border_score_1"
-            android:layout_alignEnd="@+id/border_score_1"
-            android:layout_alignLeft="@+id/border_score_1"
-            android:layout_alignRight="@+id/border_score_1"
-            android:layout_alignStart="@+id/border_score_1"
-            android:layout_alignTop="@+id/border_score_1"
-            android:gravity="center"
+            android:background="@color/dark_gray"
+            android:padding="@dimen/activity_dimen_small"
             android:text="--"
-            android:textSize="@dimen/activity_text_size" />
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_text" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-        <ImageView
-            android:id="@+id/border_score_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_margin"
-            android:layout_marginRight="@dimen/activity_margin"
-            android:layout_marginTop="@dimen/activity_margin_half"
-            android:adjustViewBounds="true"
-            android:src="@drawable/border" />
+        android:layout_marginTop="@dimen/activity_dimen_small"
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_extra_small">
 
         <TextView
             android:id="@+id/score_2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/border_score_2"
-            android:layout_alignEnd="@+id/border_score_2"
-            android:layout_alignLeft="@+id/border_score_2"
-            android:layout_alignRight="@+id/border_score_2"
-            android:layout_alignStart="@+id/border_score_2"
-            android:layout_alignTop="@+id/border_score_2"
-            android:gravity="center"
+            android:background="@color/dark_gray"
+            android:padding="@dimen/activity_dimen_small"
             android:text="--"
-            android:textSize="@dimen/activity_text_size" />
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_text" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-        <ImageView
-            android:id="@+id/border_score_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_margin"
-            android:layout_marginRight="@dimen/activity_margin"
-            android:layout_marginTop="@dimen/activity_margin_half"
-            android:adjustViewBounds="true"
-            android:src="@drawable/border" />
+        android:layout_marginTop="@dimen/activity_dimen_small"
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_extra_small">
 
         <TextView
             android:id="@+id/score_3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/border_score_3"
-            android:layout_alignEnd="@+id/border_score_3"
-            android:layout_alignLeft="@+id/border_score_3"
-            android:layout_alignRight="@+id/border_score_3"
-            android:layout_alignStart="@+id/border_score_3"
-            android:layout_alignTop="@+id/border_score_3"
-            android:gravity="center"
+            android:background="@color/dark_gray"
+            android:padding="@dimen/activity_dimen_small"
             android:text="--"
-            android:textSize="@dimen/activity_text_size" />
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_text" />
     </RelativeLayout>
 
-    <ImageView
+    <TextView
         android:id="@+id/button_about"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginRight="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin"
-        android:adjustViewBounds="true"
-        android:src="@drawable/button_help" />
+        android:layout_marginTop="@dimen/activity_dimen_large"
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_small"
+        android:text="HOW TO PLAY"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/activity_text"
+        android:textStyle="bold" />
 
-    <ImageView
+    <TextView
         android:id="@+id/button_play"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginRight="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin_half"
-        android:adjustViewBounds="true"
-        android:src="@drawable/button_play" />
+        android:layout_marginTop="@dimen/activity_dimen_small"
+        android:background="@color/red"
+        android:padding="@dimen/activity_dimen"
+        android:text="PLAY GAME"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/activity_text"
+        android:textStyle="bold" />
 </LinearLayout>

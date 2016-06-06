@@ -27,8 +27,8 @@ public class StandardGame extends AppCompatActivity {
     private int selectedCard3y;
     private Card[][] cards;
     private CountDownTimer timer;
-    private ImageView buttonPause;
-    private ImageView buttonQuit;
+    private TextView buttonPause;
+    private TextView buttonQuit;
     private ImageView[][] gridDraw;
     private TextView finalScore;
     private TextView timeCount;
@@ -52,8 +52,8 @@ public class StandardGame extends AppCompatActivity {
         selectedCard3x = -1;
         selectedCard3y = -1;
         cards = new Card[4][3];
-        buttonPause = (ImageView) findViewById(R.id.button_pause);
-        buttonQuit = (ImageView) findViewById(R.id.button_help);
+        buttonPause = (TextView) findViewById(R.id.button_pause);
+        buttonQuit = (TextView) findViewById(R.id.button_help);
         gridDraw = new ImageView[][]{
                 {(ImageView) findViewById(R.id.imageView_0_0),
                         (ImageView) findViewById(R.id.imageView_0_1),
