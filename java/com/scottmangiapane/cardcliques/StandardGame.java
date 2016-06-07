@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +26,7 @@ public class StandardGame extends AppCompatActivity {
     private Card[][] cards;
     private CountDownTimer timer;
     private TextView buttonPauseRestart;
-    private TextView buttonQuit;
+    private TextView buttonStopExit;
     private ImageView[][] gridDraw;
     private TextView finalScore;
     private TextView timeCount;
@@ -43,7 +42,7 @@ public class StandardGame extends AppCompatActivity {
         gameActivity = this;
         gameOngoing = true;
         score = 0;
-        secondsRemaining = 3000; //121000;
+        secondsRemaining = 121000;
         selectedCard1x = -1;
         selectedCard1y = -1;
         selectedCard2x = -1;
@@ -52,7 +51,7 @@ public class StandardGame extends AppCompatActivity {
         selectedCard3y = -1;
         cards = new Card[4][3];
         buttonPauseRestart = (TextView) findViewById(R.id.button_pause_restart);
-        buttonQuit = (TextView) findViewById(R.id.button_help);
+        buttonStopExit = (TextView) findViewById(R.id.button_stop_exit);
         gridDraw = new ImageView[][]{
                 {(ImageView) findViewById(R.id.imageView_0_0),
                         (ImageView) findViewById(R.id.imageView_0_1),
@@ -134,11 +133,11 @@ public class StandardGame extends AppCompatActivity {
                 overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
             }
         });
-        buttonQuit.setOnClickListener(new View.OnClickListener() {
+        buttonStopExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
+                timer.cancel();
+                timer.onFinish();
             }
         });
         refreshAllValues();
@@ -816,6 +815,25 @@ public class StandardGame extends AppCompatActivity {
                     }
                     editor.apply();
                     gameOngoing = false;
+                    buttonPauseRestart.setBackgroundColor(getResources().getColor(R.color.red));
+                    buttonPauseRestart.setText("RESTART");
+                    buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(StandardGame.this, StandardGame.class);
+                            startActivity(intent);
+                            gameActivity.finish();
+                            overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
+                        }
+                    });
+                    buttonStopExit.setText("EXIT");
+                    buttonStopExit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                            overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
+                        }
+                    });
                     selectedCard1x = -1;
                     selectedCard1y = -1;
                     selectedCard2x = -1;
@@ -831,23 +849,11 @@ public class StandardGame extends AppCompatActivity {
                                     grid[i2 / 3][i2 % 3] = 1;
                                     grid[i3 / 3][i3 % 3] = 1;
                                 }
-                    buttonPauseRestart.setBackgroundColor(getResources().getColor(R.color.red));
-                    buttonPauseRestart.setText("RESTART");
-                    buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(StandardGame.this, StandardGame.class);
-                            startActivity(intent);
-                            gameActivity.finish();
-                            overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
-                        }
-                    });
                     for (int i1 = 0; i1 < cards.length; i1++)
                         for (int i2 = 0; i2 < cards[0].length; i2++) {
                             gridDraw[i1][i2].setColorFilter(null);
                             if (grid[i1][i2] == 0) {
                                 gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
-                                Log.w("########", "COLORFILTER");
                             }
                             gridDraw[i1][i2].setOnClickListener(new View.OnClickListener() {
                                 @Override
