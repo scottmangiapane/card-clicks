@@ -836,7 +836,10 @@ public class StandardGame extends AppCompatActivity {
                     buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            gameActivity.recreate();
+                            Intent intent = new Intent(StandardGame.this, StandardGame.class);
+                            startActivity(intent);
+                            gameActivity.finish();
+                            overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
                         }
                     });
                     for (int i1 = 0; i1 < cards.length; i1++)
