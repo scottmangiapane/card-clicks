@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
         highScore1.setText(settings.getInt("HIGH_SCORE_1", 0) + " cliques");
         highScore2.setText(settings.getInt("HIGH_SCORE_2", 0) + " cliques");
         highScore3.setText(settings.getInt("HIGH_SCORE_3", 0) + " cliques");
+        if (settings.getInt("HIGH_SCORE_1", 0) == 1)
+            highScore1.setText(settings.getInt("HIGH_SCORE_1", 0) + " clique");
+        if (settings.getInt("HIGH_SCORE_2", 0) == 1)
+            highScore2.setText(settings.getInt("HIGH_SCORE_2", 0) + " clique");
+        if (settings.getInt("HIGH_SCORE_3", 0) == 1)
+            highScore3.setText(settings.getInt("HIGH_SCORE_3", 0) + " clique");
     }
 
     @Override
@@ -59,5 +65,11 @@ public class MainActivity extends AppCompatActivity {
         highScore1.setText(settings.getInt("HIGH_SCORE_1", 0) + " cliques");
         highScore2.setText(settings.getInt("HIGH_SCORE_2", 0) + " cliques");
         highScore3.setText(settings.getInt("HIGH_SCORE_3", 0) + " cliques");
+        if (settings.getInt("HIGH_SCORE_1", 0) == 1)
+            highScore1.setText(settings.getInt("HIGH_SCORE_1", 0) + " clique");
+        if (settings.getInt("HIGH_SCORE_2", 0) == 1)
+            highScore2.setText(settings.getInt("HIGH_SCORE_2", 0) + " clique");
+        if (settings.getInt("HIGH_SCORE_3", 0) == 1)
+            highScore3.setText(settings.getInt("HIGH_SCORE_3", 0) + " clique");
     }
 }
