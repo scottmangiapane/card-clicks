@@ -1,9 +1,9 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_dimen_large">64dp</dimen>
-    <dimen name="activity_dimen">32dp</dimen>
-    <dimen name="activity_dimen_small">16dp</dimen>
-    <dimen name="activity_dimen_extra_small">4dp</dimen>
+    <dimen name="activity_dimen_large">48dp</dimen>
+    <dimen name="activity_dimen">24dp</dimen>
+    <dimen name="activity_dimen_small">12dp</dimen>
+    <dimen name="activity_dimen_extra_small">3dp</dimen>
     <dimen name="activity_dimen_screen_border">80dp</dimen>
     <dimen name="activity_text">32sp</dimen>
     <dimen name="activity_text_timer">120sp</dimen>
