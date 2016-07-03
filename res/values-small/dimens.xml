@@ -1,5 +1,4 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_dimen_large">16dp</dimen>
     <dimen name="activity_dimen">8dp</dimen>
     <dimen name="activity_dimen_small">4dp</dimen>
