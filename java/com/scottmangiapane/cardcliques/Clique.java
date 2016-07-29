@@ -3,8 +3,8 @@ package com.scottmangiapane.cardcliques;
 public class Clique {
     public Card[][] cards;
 
-    public Clique() {
-        cards = new Card[4][3];
+    public Clique(int height, int width) {
+        cards = new Card[height][width];
         for (int i1 = 0; i1 < height(); i1++)
             for (int i2 = 0; i2 < width(); i2++)
                 cards[i1][i2] = new Card();
@@ -89,13 +89,540 @@ public class Clique {
 
     public int numberOfSetsDisplayed() {
         int count = 0;
-        int[] row = {0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3};
-        int[] column = {0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2};
-        for (int i1 = 0; i1 < 12; i1++)
-            for (int i2 = Math.min(i1 + 1, 12); i2 < 12; i2++)
-                for (int i3 = Math.min(i2 + 1, 12); i3 < 12; i3++)
+        int[] row = new int[width() * height()];
+        int[] column = new int[width() * height()];
+        for (int i = 0; i < row.length; i++)
+            row[i] = i / width();
+        for (int i = 0; i < column.length; i++)
+            column[i] = i % width();
+        for (int i1 = 0; i1 < width() * height(); i1++)
+            for (int i2 = Math.min(i1 + 1, width() * height()); i2 < width() * height(); i2++)
+                for (int i3 = Math.min(i2 + 1, width() * height()); i3 < width() * height(); i3++)
                     if (isSet(row[i1], column[i1], row[i2], column[i2], row[i3], column[i3]))
                         count++;
         return count;
+    }
+
+    public void setNewCard(int i1, int i2) {
+        do {
+            cards[i1][i2].drawable = (int) (Math.random() * (R.drawable.deck_squiggle_red_striped_1
+                    - R.drawable.deck_diamond_blue_border_1))
+                    + R.drawable.deck_diamond_blue_border_1;
+            refreshValue(i1, i2);
+        } while (isCardDisplayed(cards[i1][i2].drawable, i1, i2));
+    }
+
+    public void setNewCardCheckSetPossible(int i1, int i2) {
+        do {
+            cards[i1][i2].drawable = (int) (Math.random() * (R.drawable.deck_squiggle_red_striped_1
+                    - R.drawable.deck_diamond_blue_border_1))
+                    + R.drawable.deck_diamond_blue_border_1;
+            refreshValue(i1, i2);
+        }
+        while (isCardDisplayed(cards[i1][i2].drawable, i1, i2) || numberOfSetsDisplayed() == 0);
+    }
+
+    public void refreshValue(int i1, int i2) {
+        switch (cards[i1][i2].drawable) {
+            case 0:
+                cards[i1][i2].shape = "";
+                cards[i1][i2].color = "";
+                cards[i1][i2].type = "";
+                cards[i1][i2].number = 0;
+                break;
+            case R.drawable.deck_diamond_blue_border_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_blue_border_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_blue_border_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_diamond_blue_solid_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_blue_solid_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_blue_solid_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_diamond_blue_striped_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_blue_striped_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_blue_striped_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_diamond_green_border_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_green_border_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_green_border_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_diamond_green_solid_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_green_solid_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_green_solid_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_diamond_green_striped_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_green_striped_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_green_striped_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_diamond_red_border_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_red_border_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_red_border_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_diamond_red_solid_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_red_solid_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_red_solid_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_diamond_red_striped_1:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_diamond_red_striped_2:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_diamond_red_striped_3:
+                cards[i1][i2].shape = "diamond";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_blue_border_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_blue_border_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_blue_border_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_blue_solid_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_blue_solid_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_blue_solid_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_blue_striped_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_blue_striped_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_blue_striped_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_green_border_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_green_border_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_green_border_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_green_solid_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_green_solid_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_green_solid_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_green_striped_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_green_striped_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_green_striped_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_red_border_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_red_border_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_red_border_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_red_solid_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_red_solid_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_red_solid_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_oval_red_striped_1:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_oval_red_striped_2:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_oval_red_striped_3:
+                cards[i1][i2].shape = "oval";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_blue_border_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_blue_border_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_blue_border_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_blue_solid_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_blue_solid_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_blue_solid_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_blue_striped_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_blue_striped_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_blue_striped_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "blue";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_green_border_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_green_border_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_green_border_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_green_solid_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_green_solid_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_green_solid_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_green_striped_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_green_striped_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_green_striped_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "green";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_red_border_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_red_border_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_red_border_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "border";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_red_solid_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_red_solid_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_red_solid_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "solid";
+                cards[i1][i2].number = 3;
+                break;
+            case R.drawable.deck_squiggle_red_striped_1:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 1;
+                break;
+            case R.drawable.deck_squiggle_red_striped_2:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 2;
+                break;
+            case R.drawable.deck_squiggle_red_striped_3:
+                cards[i1][i2].shape = "squiggle";
+                cards[i1][i2].color = "red";
+                cards[i1][i2].type = "striped";
+                cards[i1][i2].number = 3;
+                break;
+        }
+    }
+
+    public void refreshAllValues() {
+        for (int i1 = 0; i1 < height(); i1++)
+            for (int i2 = 0; i2 < width(); i2++) {
+                refreshValue(i1, i2);
+            }
     }
 }

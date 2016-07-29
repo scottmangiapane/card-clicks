@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 
 public class HelpButton extends AppCompatActivity {
     @Override
@@ -39,6 +40,21 @@ public class HelpButton extends AppCompatActivity {
     }
 
     private void refresh() {
-
+        Clique clique = new Clique(1, 3);
+        ImageView[] gridDraw = new ImageView[]{
+                (ImageView) findViewById(R.id.imageView_0),
+                (ImageView) findViewById(R.id.imageView_1),
+                (ImageView) findViewById(R.id.imageView_2)};
+        for (int i = 0; i < clique.width(); i++)
+            clique.setNewCard(0, i);
+        clique.refreshAllValues();
+        clique.setNewCardCheckSetPossible(0, (int) (Math.random() * 2));
+        for (int i = 0; i < clique.width(); i++) {
+            gridDraw[i].setColorFilter(null);
+            if (clique.cards[0][i].drawable == 0)
+                gridDraw[i].setImageResource(R.drawable.card_empty);
+            else
+                gridDraw[i].setImageResource(clique.cards[0][i].drawable);
+        }
     }
 }
