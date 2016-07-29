@@ -14,8 +14,6 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView buttonHelp;
-    private TextView buttonPlay;
     private TextView highScore1;
     private TextView highScore2;
     private TextView highScore3;
@@ -29,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.parseColor("#303030"));
             getWindow().setNavigationBarColor(Color.parseColor("#303030"));
         }
-        buttonHelp = (TextView) findViewById(R.id.button_about);
-        buttonPlay = (TextView) findViewById(R.id.button_play);
+        TextView buttonHelp = (TextView) findViewById(R.id.button_about);
+        TextView buttonPlay = (TextView) findViewById(R.id.button_play);
         highScore1 = (TextView) findViewById(R.id.score_1);
         highScore2 = (TextView) findViewById(R.id.score_2);
         highScore3 = (TextView) findViewById(R.id.score_3);

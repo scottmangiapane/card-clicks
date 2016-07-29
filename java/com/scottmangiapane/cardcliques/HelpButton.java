@@ -15,6 +15,12 @@ public class HelpButton extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.parseColor("#303030"));
             getWindow().setNavigationBarColor(Color.parseColor("#303030"));
         }
+        findViewById(R.id.button_refresh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refresh();
+            }
+        });
         findViewById(R.id.button_return_to_menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -22,6 +28,7 @@ public class HelpButton extends AppCompatActivity {
                 overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
             }
         });
+        refresh();
     }
 
     @Override
@@ -29,5 +36,9 @@ public class HelpButton extends AppCompatActivity {
         finish();
         overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
         return;
+    }
+
+    private void refresh() {
+
     }
 }
