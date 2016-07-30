@@ -6,26 +6,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_dimen_screen_border">
 
         <TextView
+            style="@android:style/TextAppearance.Holo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_dimen_large"
             android:text="INSTRUCTIONS"
-            android:textColor="@color/white"
-            android:textSize="@dimen/activity_text"
             android:textStyle="bold" />
 
         <TextView
+            style="@android:style/TextAppearance.Holo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_dimen_small"
-            android:text="The goal of this game is to find as many cliques as you can before the timer runs out. A clique is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card."
-            android:textSize="@dimen/activity_text" />
+            android:text="The goal of this game is to find as many cliques as you can before the timer runs out. A clique is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card." />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,13 +32,12 @@
 
             <TextView
                 android:id="@+id/text_example"
+                style="@android:style/TextAppearance.Holo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:text="EXAMPLE"
-                android:textColor="@color/white"
-                android:textSize="@dimen/activity_text"
                 android:textStyle="bold" />
 
             <ImageView
@@ -95,15 +92,14 @@
 
         <TextView
             android:id="@+id/button_return_to_menu"
+            style="@android:style/TextAppearance.Holo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_dimen_large"
             android:background="@color/red"
+            android:gravity="center"
             android:padding="@dimen/activity_dimen"
             android:text="RETURN TO MENU"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/activity_text"
             android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

@@ -4,6 +4,5 @@
     <dimen name="activity_dimen_small">12dp</dimen>
     <dimen name="activity_dimen_extra_small">3dp</dimen>
     <dimen name="activity_dimen_screen_border">80dp</dimen>
-    <dimen name="activity_text">32sp</dimen>
-    <dimen name="activity_text_timer">120sp</dimen>
+    <dimen name="activity_text_timer">112sp</dimen>
 </resources>
