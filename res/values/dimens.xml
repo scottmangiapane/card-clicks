@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="activity_dimen_large">24dp</dimen>
+    <dimen name="activity_dimen_large">28dp</dimen>
     <dimen name="activity_dimen">16dp</dimen>
     <dimen name="activity_dimen_small">8dp</dimen>
     <dimen name="activity_dimen_extra_small">2dp</dimen>
