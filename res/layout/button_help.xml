@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/activity_dimen_screen_border">
+        android:paddingLeft="@dimen/activity_dimen_screen_border"
+        android:paddingRight="@dimen/activity_dimen_screen_border">
 
         <TextView
             style="@android:style/TextAppearance.Holo"
