@@ -40,21 +40,19 @@ public class HelpButton extends AppCompatActivity {
     }
 
     private void refresh() {
-        Clique clique = new Clique(1, 3);
+        Deck deck = new Deck(1, 3);
         ImageView[] gridDraw = new ImageView[]{
                 (ImageView) findViewById(R.id.imageView_0),
                 (ImageView) findViewById(R.id.imageView_1),
                 (ImageView) findViewById(R.id.imageView_2)};
-        for (int i = 0; i < clique.width(); i++)
-            clique.setNewCard(0, i);
-        clique.refreshAllValues();
-        clique.setNewCardCheckSetPossible(0, (int) (Math.random() * 2));
-        for (int i = 0; i < clique.width(); i++) {
-            gridDraw[i].setColorFilter(null);
-            if (clique.cards[0][i].drawable == 0)
+        for (int i = 0; i < deck.width(); i++)
+            deck.setNewCard(0, i);
+        deck.refreshAllValues();
+        deck.setNewCardCheckSetPossible(0, (int) (Math.random() * deck.width()));
+        for (int i = 0; i < deck.width(); i++)
+            if (deck.cards[0][i].drawable == 0)
                 gridDraw[i].setImageResource(R.drawable.card_empty);
             else
-                gridDraw[i].setImageResource(clique.cards[0][i].drawable);
-        }
+                gridDraw[i].setImageResource(deck.cards[0][i].drawable);
     }
 }

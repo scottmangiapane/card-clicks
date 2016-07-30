@@ -1,9 +1,9 @@
 package com.scottmangiapane.cardcliques;
 
-public class Clique {
+public class Deck {
     public Card[][] cards;
 
-    public Clique(int height, int width) {
+    public Deck(int height, int width) {
         cards = new Card[height][width];
         for (int i1 = 0; i1 < height(); i1++)
             for (int i2 = 0; i2 < width(); i2++)
@@ -27,18 +27,15 @@ public class Clique {
     }
 
     public boolean isSet(int card1x, int card1y, int card2x, int card2y, int card3x, int card3y) {
-        if (
-                isSetColor(card1x, card1y, card2x, card2y, card3x, card3y)
-                        && isSetNumber(card1x, card1y, card2x, card2y, card3x, card3y)
-                        && isSetShape(card1x, card1y, card2x, card2y, card3x, card3y)
-                        && isSetType(card1x, card1y, card2x, card2y, card3x, card3y)
-                )
+        if (isSetColor(card1x, card1y, card2x, card2y, card3x, card3y)
+                && isSetNumber(card1x, card1y, card2x, card2y, card3x, card3y)
+                && isSetShape(card1x, card1y, card2x, card2y, card3x, card3y)
+                && isSetType(card1x, card1y, card2x, card2y, card3x, card3y))
             return true;
         return false;
     }
 
-    public boolean isSetColor(int card1x, int card1y, int card2x,
-                              int card2y, int card3x, int card3y) {
+    public boolean isSetColor(int card1x, int card1y, int card2x, int card2y, int card3x, int card3y) {
         if (cards[card1x][card1y].color.equals(cards[card2x][card2y].color)
                 && cards[card2x][card2y].color.equals(cards[card3x][card3y].color))
             return true;
@@ -49,8 +46,7 @@ public class Clique {
         return false;
     }
 
-    public boolean isSetNumber(int card1x, int card1y, int card2x,
-                               int card2y, int card3x, int card3y) {
+    public boolean isSetNumber(int card1x, int card1y, int card2x, int card2y, int card3x, int card3y) {
         if (cards[card1x][card1y].number == (cards[card2x][card2y].number)
                 && cards[card2x][card2y].number == (cards[card3x][card3y].number))
             return true;
@@ -61,9 +57,7 @@ public class Clique {
         return false;
     }
 
-    public boolean isSetShape(int card1x, int card1y,
-                              int card2x, int card2y,
-                              int card3x, int card3y) {
+    public boolean isSetShape(int card1x, int card1y, int card2x, int card2y, int card3x, int card3y) {
         if (cards[card1x][card1y].shape.equals(cards[card2x][card2y].shape)
                 && cards[card2x][card2y].shape.equals(cards[card3x][card3y].shape))
             return true;
@@ -74,9 +68,7 @@ public class Clique {
         return false;
     }
 
-    public boolean isSetType(int card1x, int card1y,
-                             int card2x, int card2y,
-                             int card3x, int card3y) {
+    public boolean isSetType(int card1x, int card1y, int card2x, int card2y, int card3x, int card3y) {
         if (cards[card1x][card1y].type.equals(cards[card2x][card2y].type)
                 && cards[card2x][card2y].type.equals(cards[card3x][card3y].type))
             return true;
@@ -89,23 +81,17 @@ public class Clique {
 
     public int numberOfSetsDisplayed() {
         int count = 0;
-        int[] row = new int[width() * height()];
-        int[] column = new int[width() * height()];
-        for (int i = 0; i < row.length; i++)
-            row[i] = i / width();
-        for (int i = 0; i < column.length; i++)
-            column[i] = i % width();
         for (int i1 = 0; i1 < width() * height(); i1++)
-            for (int i2 = Math.min(i1 + 1, width() * height()); i2 < width() * height(); i2++)
-                for (int i3 = Math.min(i2 + 1, width() * height()); i3 < width() * height(); i3++)
-                    if (isSet(row[i1], column[i1], row[i2], column[i2], row[i3], column[i3]))
+            for (int i2 = i1 + 1; i2 < width() * height(); i2++)
+                for (int i3 = i2 + 1; i3 < width() * height(); i3++)
+                    if (isSet(i1 / width(), i1 % width(), i2 / width(), i2 % width(), i3 / width(), i3 % width()))
                         count++;
         return count;
     }
 
     public void setNewCard(int i1, int i2) {
         do {
-            cards[i1][i2].drawable = (int) (Math.random() * (R.drawable.deck_squiggle_red_striped_1
+            cards[i1][i2].drawable = (int) (Math.random() * (R.drawable.deck_squiggle_red_striped_3 + 1
                     - R.drawable.deck_diamond_blue_border_1))
                     + R.drawable.deck_diamond_blue_border_1;
             refreshValue(i1, i2);
@@ -114,7 +100,7 @@ public class Clique {
 
     public void setNewCardCheckSetPossible(int i1, int i2) {
         do {
-            cards[i1][i2].drawable = (int) (Math.random() * (R.drawable.deck_squiggle_red_striped_1
+            cards[i1][i2].drawable = (int) (Math.random() * (R.drawable.deck_squiggle_red_striped_3 + 1
                     - R.drawable.deck_diamond_blue_border_1))
                     + R.drawable.deck_diamond_blue_border_1;
             refreshValue(i1, i2);
@@ -621,8 +607,7 @@ public class Clique {
 
     public void refreshAllValues() {
         for (int i1 = 0; i1 < height(); i1++)
-            for (int i2 = 0; i2 < width(); i2++) {
+            for (int i2 = 0; i2 < width(); i2++)
                 refreshValue(i1, i2);
-            }
     }
 }

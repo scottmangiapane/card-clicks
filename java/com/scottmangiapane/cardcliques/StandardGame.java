@@ -23,7 +23,7 @@ public class StandardGame extends AppCompatActivity {
     private int selectedCard2y;
     private int selectedCard3x;
     private int selectedCard3y;
-    private Clique clique;
+    private Deck deck;
     private CountDownTimer timer;
     private TextView buttonPauseRestart;
     private TextView buttonStopExit;
@@ -49,7 +49,7 @@ public class StandardGame extends AppCompatActivity {
         selectedCard2y = -1;
         selectedCard3x = -1;
         selectedCard3y = -1;
-        clique = new Clique(4, 3);
+        deck = new Deck(4, 3);
         buttonPauseRestart = (TextView) findViewById(R.id.button_pause_restart);
         buttonStopExit = (TextView) findViewById(R.id.button_stop_exit);
         gridDraw = new ImageView[][]{
@@ -67,9 +67,9 @@ public class StandardGame extends AppCompatActivity {
                         (ImageView) findViewById(R.id.imageView_3_2)}};
         finalScore = (TextView) findViewById(R.id.final_score);
         timeCount = (TextView) findViewById(R.id.time_count);
-        for (int i1 = 0; i1 < clique.height(); i1++)
-            for (int i2 = 0; i2 < clique.width(); i2++) {
-                clique.setNewCard(i1, i2);
+        for (int i1 = 0; i1 < deck.height(); i1++)
+            for (int i2 = 0; i2 < deck.width(); i2++) {
+                deck.setNewCard(i1, i2);
                 final int ia = i1;
                 final int ib = i2;
                 gridDraw[i1][i2].setOnClickListener(new View.OnClickListener() {
@@ -101,13 +101,13 @@ public class StandardGame extends AppCompatActivity {
                             selectedCard3x = ia;
                             selectedCard3y = ib;
                             refreshDraw();
-                            if (clique.isSet(selectedCard1x, selectedCard1y,
+                            if (deck.isSet(selectedCard1x, selectedCard1y,
                                     selectedCard2x, selectedCard2y,
                                     selectedCard3x, selectedCard3y)) {
                                 finalScore.setText("Score: " + ++score);
-                                clique.setNewCard(selectedCard1x, selectedCard1y);
-                                clique.setNewCard(selectedCard2x, selectedCard2y);
-                                clique.setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
+                                deck.setNewCard(selectedCard1x, selectedCard1y);
+                                deck.setNewCard(selectedCard2x, selectedCard2y);
+                                deck.setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
                             }
                             selectedCard1x = -1;
                             selectedCard1y = -1;
@@ -136,19 +136,19 @@ public class StandardGame extends AppCompatActivity {
                 timer.onFinish();
             }
         });
-        clique.refreshAllValues();
-        clique.setNewCardCheckSetPossible((int) (Math.random() * 3), (int) (Math.random() * 2));
+        deck.refreshAllValues();
+        deck.setNewCardCheckSetPossible((int) (Math.random() * deck.height()), (int) (Math.random() * deck.width()));
         refreshDraw();
     }
 
     public void refreshDraw() {
-        for (int i1 = 0; i1 < clique.height(); i1++)
-            for (int i2 = 0; i2 < clique.width(); i2++) {
+        for (int i1 = 0; i1 < deck.height(); i1++)
+            for (int i2 = 0; i2 < deck.width(); i2++) {
                 gridDraw[i1][i2].setColorFilter(null);
-                if (clique.cards[i1][i2].drawable == 0)
+                if (deck.cards[i1][i2].drawable == 0)
                     gridDraw[i1][i2].setImageResource(R.drawable.card_empty);
                 else
-                    gridDraw[i1][i2].setImageResource(clique.cards[i1][i2].drawable);
+                    gridDraw[i1][i2].setImageResource(deck.cards[i1][i2].drawable);
                 if ((i1 != selectedCard1x || i2 != selectedCard1y)
                         && (i1 != selectedCard2x || i2 != selectedCard2y)
                         && (i1 != selectedCard3x || i2 != selectedCard3y))
@@ -237,13 +237,13 @@ public class StandardGame extends AppCompatActivity {
                     for (int i1 = 0; i1 < 10; i1++)
                         for (int i2 = i1 + 1; i2 < 11; i2++)
                             for (int i3 = i2 + 1; i3 < 12; i3++)
-                                if (clique.isSet(i1 / 3, i1 % 3, i2 / 3, i2 % 3, i3 / 3, i3 % 3)) {
+                                if (deck.isSet(i1 / 3, i1 % 3, i2 / 3, i2 % 3, i3 / 3, i3 % 3)) {
                                     grid[i1 / 3][i1 % 3] = 1;
                                     grid[i2 / 3][i2 % 3] = 1;
                                     grid[i3 / 3][i3 % 3] = 1;
                                 }
-                    for (int i1 = 0; i1 < clique.height(); i1++)
-                        for (int i2 = 0; i2 < clique.width(); i2++) {
+                    for (int i1 = 0; i1 < deck.height(); i1++)
+                        for (int i2 = 0; i2 < deck.width(); i2++) {
                             gridDraw[i1][i2].setColorFilter(null);
                             if (grid[i1][i2] == 0) {
                                 gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
