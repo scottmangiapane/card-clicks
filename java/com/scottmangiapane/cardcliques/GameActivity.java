@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class StandardGame extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
     public static AppCompatActivity gameActivity;
     private boolean gameOngoing;
     private int score;
@@ -34,11 +33,7 @@ public class StandardGame extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_standard);
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(Color.parseColor("#303030"));
-            getWindow().setNavigationBarColor(Color.parseColor("#303030"));
-        }
+        setContentView(R.layout.activity_game);
         gameActivity = this;
         gameOngoing = true;
         score = 0;
@@ -124,7 +119,7 @@ public class StandardGame extends AppCompatActivity {
         buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StandardGame.this, Paused.class);
+                Intent intent = new Intent(GameActivity.this, PausedActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
             }
@@ -162,7 +157,7 @@ public class StandardGame extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (gameOngoing) {
-            Intent intent = new Intent(StandardGame.this, Paused.class);
+            Intent intent = new Intent(GameActivity.this, PausedActivity.class);
             startActivity(intent);
             overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
         }
@@ -183,7 +178,7 @@ public class StandardGame extends AppCompatActivity {
             timer = new CountDownTimer(secondsRemaining, 1000) {
                 public void onTick(long millisUntilFinished) {
                     secondsRemaining = (int) millisUntilFinished;
-                    timeCount.setText("0" + (millisUntilFinished / 60000) + ":"
+                    timeCount.setText("" + (millisUntilFinished / 60000) + ":"
                             + (((millisUntilFinished / 1000) % 60) / 10)
                             + (((millisUntilFinished / 1000) % 60) % 10));
                 }
@@ -213,7 +208,7 @@ public class StandardGame extends AppCompatActivity {
                     buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(StandardGame.this, StandardGame.class);
+                            Intent intent = new Intent(GameActivity.this, GameActivity.class);
                             startActivity(intent);
                             gameActivity.finish();
                             overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
