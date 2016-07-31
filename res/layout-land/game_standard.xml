@@ -1,0 +1,207 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_dimen_screen_border"
+    tools:context=".StandardGame">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_dimen_extra_small"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/time_count"
+            style="@android:style/TextAppearance.Holo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/light_gray"
+            android:gravity="center"
+            android:padding="@dimen/activity_dimen_large"
+            android:text="--:--"
+            android:textSize="@dimen/activity_text_timer_land"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/final_score"
+            style="@android:style/TextAppearance.Holo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_dimen"
+            android:gravity="center"
+            android:text="Score: 0" />
+
+        <TextView
+            android:id="@+id/button_stop_exit"
+            style="@android:style/TextAppearance.Holo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_dimen_extra_small"
+            android:layout_marginTop="@dimen/activity_dimen"
+            android:background="@color/light_gray"
+            android:gravity="center"
+            android:padding="@dimen/activity_dimen_small"
+            android:text="STOP"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/button_pause_restart"
+            style="@android:style/TextAppearance.Holo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_dimen_extra_small"
+            android:background="@color/light_gray"
+            android:gravity="center"
+            android:padding="@dimen/activity_dimen_small"
+            android:text="PAUSE"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="@dimen/activity_dimen_extra_extra_small"
+        android:layout_marginLeft="@dimen/activity_dimen_small"
+        android:layout_marginStart="@dimen/activity_dimen_small"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imageView_0_0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/imageView_0_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/imageView_0_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imageView_1_0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/imageView_1_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/imageView_1_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imageView_2_0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/imageView_2_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/imageView_2_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imageView_3_0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/imageView_3_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/imageView_3_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

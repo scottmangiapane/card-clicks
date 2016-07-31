@@ -2,7 +2,9 @@
     <dimen name="activity_dimen_large">14dp</dimen>
     <dimen name="activity_dimen">8dp</dimen>
     <dimen name="activity_dimen_small">4dp</dimen>
-    <dimen name="activity_dimen_extra_small">1dp</dimen>
+    <dimen name="activity_dimen_extra_small">2dp</dimen>
+    <dimen name="activity_dimen_extra_extra_small">1dp</dimen>
     <dimen name="activity_dimen_screen_border">20dp</dimen>
     <dimen name="activity_text_timer">28sp</dimen>
+    <dimen name="activity_text_timer_land">22sp</dimen>
 </resources>

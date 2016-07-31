@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:paddingBottom="@dimen/activity_dimen_screen_border"
-        android:paddingTop="@dimen/activity_dimen_screen_border">
+        android:paddingLeft="@dimen/activity_dimen_screen_border"
+        android:paddingRight="@dimen/activity_dimen_screen_border">
 
         <View
             android:layout_width="0dp"

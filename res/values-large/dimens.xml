@@ -2,7 +2,9 @@
     <dimen name="activity_dimen_large">56dp</dimen>
     <dimen name="activity_dimen">24dp</dimen>
     <dimen name="activity_dimen_small">12dp</dimen>
-    <dimen name="activity_dimen_extra_small">3dp</dimen>
+    <dimen name="activity_dimen_extra_small">6dp</dimen>
+    <dimen name="activity_dimen_extra_extra_small">3dp</dimen>
     <dimen name="activity_dimen_screen_border">80dp</dimen>
     <dimen name="activity_text_timer">112sp</dimen>
+    <dimen name="activity_text_timer_land">90sp</dimen>
 </resources>
