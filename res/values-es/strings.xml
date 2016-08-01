@@ -3,13 +3,14 @@
 
     <!-- MainActivity -->
     <string name="high_scores">PUNTUACIÓN ALTO</string>
-    <string name="clique"> clique</string>
-    <string name="cliques"> cliques</string>
+    <string name="clique">clique</string>
+    <string name="cliques">cliques</string>
     <string name="how_to_play">CÓMO JUGAR</string>
     <string name="play_game">JUGAR JUEGO</string>
 
     <!-- GameActivity -->
     <string name="score">PUNTOS: </string>
+    <string name="high">ALTA: </string>
     <string name="stop">DETENER</string>
     <string name="pause">PAUSA</string>
     <string name="restart">REINICIAR</string>

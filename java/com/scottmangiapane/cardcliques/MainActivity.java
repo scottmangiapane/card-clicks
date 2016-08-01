@@ -44,15 +44,15 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
             }
         });
-        highScore1.setText(sp.getInt("score_1", 0) + R.string.cliques);
-        highScore2.setText(sp.getInt("score_2", 0) + R.string.cliques);
-        highScore3.setText(sp.getInt("score_3", 0) + R.string.cliques);
+        highScore1.setText(sp.getInt("score_1", 0) + " " + getString(R.string.cliques));
+        highScore2.setText(sp.getInt("score_2", 0) + " " + getString(R.string.cliques));
+        highScore3.setText(sp.getInt("score_3", 0) + " " + getString(R.string.cliques));
         if (sp.getInt("score_1", 0) == 1)
-            highScore1.setText(sp.getInt("score_1", 0) + R.string.clique);
+            highScore1.setText(sp.getInt("score_1", 0) + " " + getString(R.string.clique));
         if (sp.getInt("score_2", 0) == 1)
-            highScore2.setText(sp.getInt("score_2", 0) + R.string.clique);
+            highScore2.setText(sp.getInt("score_2", 0) + " " + getString(R.string.clique));
         if (sp.getInt("score_3", 0) == 1)
-            highScore3.setText(sp.getInt("score_3", 0) + R.string.clique);
+            highScore3.setText(sp.getInt("score_3", 0) + " " + getString(R.string.clique));
         if (sp.getInt("launch_count", 0) == 5) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.rate_card_cliques)
@@ -77,14 +77,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        highScore1.setText(sp.getInt("score_1", 0) + R.string.cliques);
-        highScore2.setText(sp.getInt("score_2", 0) + R.string.cliques);
-        highScore3.setText(sp.getInt("score_3", 0) + R.string.cliques);
+        highScore1.setText(sp.getInt("score_1", 0) + " " + getString(R.string.cliques));
+        highScore2.setText(sp.getInt("score_2", 0) + " " + getString(R.string.cliques));
+        highScore3.setText(sp.getInt("score_3", 0) + " " + getString(R.string.cliques));
         if (sp.getInt("score_1", 0) == 1)
-            highScore1.setText(sp.getInt("score_1", 0) + R.string.clique);
+            highScore1.setText(sp.getInt("score_1", 0) + " " + getString(R.string.clique));
         if (sp.getInt("score_2", 0) == 1)
-            highScore2.setText(sp.getInt("score_2", 0) + R.string.clique);
+            highScore2.setText(sp.getInt("score_2", 0) + " " + getString(R.string.clique));
         if (sp.getInt("score_3", 0) == 1)
-            highScore3.setText(sp.getInt("score_3", 0) + R.string.clique);
+            highScore3.setText(sp.getInt("score_3", 0) + " " + getString(R.string.clique));
     }
 }

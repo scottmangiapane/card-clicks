@@ -99,7 +99,8 @@ public class GameActivity extends AppCompatActivity {
                             if (deck.isSet(selectedCard1x, selectedCard1y,
                                     selectedCard2x, selectedCard2y,
                                     selectedCard3x, selectedCard3y)) {
-                                scoreView.setText(R.string.score + ++score);
+                                String scoreText = getString(R.string.score) + " " + ++score;
+                                scoreView.setText(scoreText);
                                 deck.setNewCard(selectedCard1x, selectedCard1y);
                                 deck.setNewCard(selectedCard2x, selectedCard2y);
                                 deck.setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
@@ -172,7 +173,8 @@ public class GameActivity extends AppCompatActivity {
                             + selectedCard3x + selectedCard3y > -6)
                         gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
             }
-        scoreView.setText(R.string.score + score);
+        String scoreText = getString(R.string.score) + " " + score;
+        scoreView.setText(scoreText);
     }
 
     @Override
@@ -225,7 +227,7 @@ public class GameActivity extends AppCompatActivity {
                     editor.apply();
                     gameOngoing = false;
                     buttonPauseRestart.setBackgroundColor(getResources().getColor(R.color.red));
-                    buttonPauseRestart.setText(R.string.restart);
+                    buttonPauseRestart.setText(getString(R.string.restart));
                     buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -235,7 +237,7 @@ public class GameActivity extends AppCompatActivity {
                             overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
                         }
                     });
-                    buttonStopExit.setText(R.string.exit);
+                    buttonStopExit.setText(getString(R.string.exit));
                     buttonStopExit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -270,7 +272,8 @@ public class GameActivity extends AppCompatActivity {
                                 }
                             });
                         }
-                    String scoreText = "SCORE: " + score + "     HIGH: " + sp.getInt("score_1", 0);
+                    String scoreText = getString(R.string.score) + " " + score
+                            + "     " + getString(R.string.high) + " " + sp.getInt("score_1", 0);
                     scoreView.setText(scoreText);
                     timeCount.setText("0:00");
                 }
