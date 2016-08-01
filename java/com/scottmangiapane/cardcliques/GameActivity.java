@@ -148,7 +148,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if (!savedInstanceState.getBoolean("ongoing")) {
+        if (savedInstanceState.getBoolean("ongoing")) {
             deck.loadString(savedInstanceState.getString("deck"));
             secondsRemaining = savedInstanceState.getInt("time");
             score = savedInstanceState.getInt("score");
