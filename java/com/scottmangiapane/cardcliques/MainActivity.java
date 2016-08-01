@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         highScore1 = (TextView) findViewById(R.id.score_1);
         highScore2 = (TextView) findViewById(R.id.score_2);
         highScore3 = (TextView) findViewById(R.id.score_3);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         buttonHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
