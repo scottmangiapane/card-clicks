@@ -1,117 +1,151 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_gray"
+    android:gravity="center"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/activity_dimen_screen_border"
-        android:paddingRight="@dimen/activity_dimen_screen_border">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:layout_marginLeft="@dimen/activity_dimen_screen_border"
+            android:layout_marginRight="@dimen/activity_dimen_screen_border"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HIGH SCORES"
-                android:textStyle="bold" />
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_dimen_small"
-                android:background="@color/light_gray"
-                android:padding="@dimen/activity_dimen_extra_small">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/score_1"
-                    style="@android:style/TextAppearance.Holo"
-                    android:layout_width="match_parent"
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/dark_gray"
-                    android:gravity="center"
-                    android:padding="@dimen/activity_dimen_small"
-                    android:text="--" />
-            </RelativeLayout>
+                    android:layout_weight="3"
+                    android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_dimen_small"
-                android:background="@color/light_gray"
-                android:padding="@dimen/activity_dimen_extra_small">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/logo" />
 
-                <TextView
-                    android:id="@+id/score_2"
-                    style="@android:style/TextAppearance.Holo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/dark_gray"
-                    android:gravity="center"
-                    android:padding="@dimen/activity_dimen_small"
-                    android:text="--" />
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_dimen_large"
+                        android:text="HIGH SCORES"
+                        android:textStyle="bold" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_dimen_small"
-                android:background="@color/light_gray"
-                android:padding="@dimen/activity_dimen_extra_small">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_dimen_small"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/score_3"
-                    style="@android:style/TextAppearance.Holo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/dark_gray"
-                    android:gravity="center"
-                    android:padding="@dimen/activity_dimen_small"
-                    android:text="--" />
-            </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/activity_dimen_extra_small"
+                            android:layout_marginRight="@dimen/activity_dimen_extra_small"
+                            android:layout_weight="1"
+                            android:background="@color/light_gray"
+                            android:padding="@dimen/activity_dimen_extra_small">
 
-            <TextView
-                android:id="@+id/button_about"
-                style="@android:style/TextAppearance.Holo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_dimen_large"
-                android:background="@color/light_gray"
-                android:gravity="center"
-                android:padding="@dimen/activity_dimen_small"
-                android:text="HOW TO PLAY"
-                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/score_1"
+                                style="@android:style/TextAppearance.Holo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/dark_gray"
+                                android:gravity="center"
+                                android:padding="@dimen/activity_dimen_small"
+                                android:text="--" />
+                        </RelativeLayout>
 
-            <TextView
-                android:id="@+id/button_play"
-                style="@android:style/TextAppearance.Holo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_dimen_small"
-                android:background="@color/red"
-                android:gravity="center"
-                android:padding="@dimen/activity_dimen"
-                android:text="PLAY GAME"
-                android:textStyle="bold" />
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/activity_dimen_extra_small"
+                            android:layout_marginLeft="@dimen/activity_dimen_extra_small"
+                            android:layout_marginRight="@dimen/activity_dimen_extra_small"
+                            android:layout_marginStart="@dimen/activity_dimen_extra_small"
+                            android:layout_weight="1"
+                            android:background="@color/light_gray"
+                            android:padding="@dimen/activity_dimen_extra_small">
+
+                            <TextView
+                                android:id="@+id/score_2"
+                                style="@android:style/TextAppearance.Holo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/dark_gray"
+                                android:gravity="center"
+                                android:padding="@dimen/activity_dimen_small"
+                                android:text="--" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_dimen_extra_small"
+                            android:layout_marginStart="@dimen/activity_dimen_extra_small"
+                            android:layout_weight="1"
+                            android:background="@color/light_gray"
+                            android:padding="@dimen/activity_dimen_extra_small">
+
+                            <TextView
+                                android:id="@+id/score_3"
+                                style="@android:style/TextAppearance.Holo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/dark_gray"
+                                android:gravity="center"
+                                android:padding="@dimen/activity_dimen_small"
+                                android:text="--" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/button_about"
+                        style="@android:style/TextAppearance.Holo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_dimen_large"
+                        android:background="@color/light_gray"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_dimen_small"
+                        android:text="HOW TO PLAY"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/button_play"
+                        style="@android:style/TextAppearance.Holo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_dimen_small"
+                        android:background="@color/red"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_dimen"
+                        android:text="PLAY GAME"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </LinearLayout>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
