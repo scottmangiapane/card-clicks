@@ -1,4 +1,4 @@
-# android-card-cliques
+# Card Cliques
 
 A clique is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card. Find as many cliques as you can before the timer runs out.
 
