@@ -45,7 +45,7 @@
             android:background="@color/light_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
-            android:text="STOP"
+            android:text="@string/stop"
             android:textStyle="bold" />
 
         <TextView
@@ -59,7 +59,7 @@
             android:background="@color/light_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
-            android:text="PAUSE"
+            android:text="@string/pause"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_dimen"
         android:gravity="center"
-        android:text="SCORE: 0"
+        android:text="@string/score"
         android:textStyle="bold" />
 
     <LinearLayout

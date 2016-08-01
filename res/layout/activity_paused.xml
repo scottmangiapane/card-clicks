@@ -41,6 +41,6 @@
         android:background="@color/red"
         android:gravity="center"
         android:padding="@dimen/activity_dimen"
-        android:text="RESUME GAME"
+        android:text="@string/resume_game"
         android:textStyle="bold" />
 </LinearLayout>
