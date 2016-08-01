@@ -1,107 +1,102 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_gray"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_dimen_screen_border"
+    android:paddingRight="@dimen/activity_dimen_screen_border"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/logo" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_dimen_screen_border"
-        android:paddingRight="@dimen/activity_dimen_screen_border">
+        android:layout_marginTop="@dimen/activity_dimen_large"
+        android:text="HIGH SCORES"
+        android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/logo" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_dimen_large"
-            android:text="HIGH SCORES"
-            android:textStyle="bold" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_dimen_small"
-            android:background="@color/light_gray"
-            android:padding="@dimen/activity_dimen_extra_small">
-
-            <TextView
-                android:id="@+id/score_1"
-                style="@android:style/TextAppearance.Holo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/dark_gray"
-                android:gravity="center"
-                android:padding="@dimen/activity_dimen_small"
-                android:text="--" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_dimen_small"
-            android:background="@color/light_gray"
-            android:padding="@dimen/activity_dimen_extra_small">
-
-            <TextView
-                android:id="@+id/score_2"
-                style="@android:style/TextAppearance.Holo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/dark_gray"
-                android:gravity="center"
-                android:padding="@dimen/activity_dimen_small"
-                android:text="--" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_dimen_small"
-            android:background="@color/light_gray"
-            android:padding="@dimen/activity_dimen_extra_small">
-
-            <TextView
-                android:id="@+id/score_3"
-                style="@android:style/TextAppearance.Holo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/dark_gray"
-                android:gravity="center"
-                android:padding="@dimen/activity_dimen_small"
-                android:text="--" />
-        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_dimen_small"
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_extra_small">
 
         <TextView
-            android:id="@+id/button_about"
+            android:id="@+id/score_1"
             style="@android:style/TextAppearance.Holo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_dimen_large"
-            android:background="@color/light_gray"
+            android:background="@color/dark_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
-            android:text="HOW TO PLAY"
-            android:textStyle="bold" />
+            android:text="--" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_dimen_small"
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_extra_small">
 
         <TextView
-            android:id="@+id/button_play"
+            android:id="@+id/score_2"
             style="@android:style/TextAppearance.Holo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_dimen_small"
-            android:background="@color/red"
+            android:background="@color/dark_gray"
             android:gravity="center"
-            android:padding="@dimen/activity_dimen"
-            android:text="PLAY GAME"
-            android:textStyle="bold" />
-    </LinearLayout>
-</ScrollView>
+            android:padding="@dimen/activity_dimen_small"
+            android:text="--" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_dimen_small"
+        android:background="@color/light_gray"
+        android:padding="@dimen/activity_dimen_extra_small">
+
+        <TextView
+            android:id="@+id/score_3"
+            style="@android:style/TextAppearance.Holo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_gray"
+            android:gravity="center"
+            android:padding="@dimen/activity_dimen_small"
+            android:text="--" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/button_about"
+        style="@android:style/TextAppearance.Holo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_dimen_large"
+        android:background="@color/light_gray"
+        android:gravity="center"
+        android:padding="@dimen/activity_dimen_small"
+        android:text="HOW TO PLAY"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/button_play"
+        style="@android:style/TextAppearance.Holo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_dimen_small"
+        android:background="@color/red"
+        android:gravity="center"
+        android:padding="@dimen/activity_dimen"
+        android:text="PLAY GAME"
+        android:textStyle="bold" />
+</LinearLayout>

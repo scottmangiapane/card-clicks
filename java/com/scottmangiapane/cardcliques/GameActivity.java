@@ -1,11 +1,11 @@
 package com.scottmangiapane.cardcliques;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -99,7 +99,7 @@ public class GameActivity extends AppCompatActivity {
                             if (deck.isSet(selectedCard1x, selectedCard1y,
                                     selectedCard2x, selectedCard2y,
                                     selectedCard3x, selectedCard3y)) {
-                                finalScore.setText("Score: " + ++score);
+                                finalScore.setText("SCORE: " + ++score);
                                 deck.setNewCard(selectedCard1x, selectedCard1y);
                                 deck.setNewCard(selectedCard2x, selectedCard2y);
                                 deck.setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
@@ -169,7 +169,7 @@ public class GameActivity extends AppCompatActivity {
                             + selectedCard3x + selectedCard3y > -6)
                         gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
             }
-        finalScore.setText("Score: " + score);
+        finalScore.setText("SCORE: " + score);
     }
 
     @Override
@@ -202,21 +202,20 @@ public class GameActivity extends AppCompatActivity {
                 }
 
                 public void onFinish() {
-                    SharedPreferences settings = getApplicationContext()
-                            .getSharedPreferences("SCORE_DATA", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = settings.edit();
-                    if (score > settings.getInt("HIGH_SCORE_3", 0)) {
-                        if (score > settings.getInt("HIGH_SCORE_2", 0)) {
-                            if (score > settings.getInt("HIGH_SCORE_1", 0)) {
-                                editor.putInt("HIGH_SCORE_3", settings.getInt("HIGH_SCORE_2", 0));
-                                editor.putInt("HIGH_SCORE_2", settings.getInt("HIGH_SCORE_1", 0));
-                                editor.putInt("HIGH_SCORE_1", score);
+                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = sp.edit();
+                    if (score > sp.getInt("score_3", 0)) {
+                        if (score > sp.getInt("score_2", 0)) {
+                            if (score > sp.getInt("score_1", 0)) {
+                                editor.putInt("score_3", sp.getInt("score_2", 0));
+                                editor.putInt("score_2", sp.getInt("score_1", 0));
+                                editor.putInt("score_1", score);
                             } else {
-                                editor.putInt("HIGH_SCORE_3", settings.getInt("HIGH_SCORE_2", 0));
-                                editor.putInt("HIGH_SCORE_2", score);
+                                editor.putInt("score_3", sp.getInt("score_2", 0));
+                                editor.putInt("score_2", score);
                             }
                         } else {
-                            editor.putInt("HIGH_SCORE_3", score);
+                            editor.putInt("score_3", score);
                         }
                     }
                     editor.apply();
@@ -267,8 +266,8 @@ public class GameActivity extends AppCompatActivity {
                                 }
                             });
                         }
-                    finalScore.setText("Score: " + score + "     High: "
-                            + settings.getInt("HIGH_SCORE_1", 0));
+                    finalScore.setText("SCORE: " + score + "     HIGH: "
+                            + sp.getInt("score_1", 0));
                     timeCount.setText("0:00");
                 }
             }.start();
