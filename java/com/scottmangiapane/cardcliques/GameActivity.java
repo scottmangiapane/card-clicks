@@ -142,15 +142,18 @@ public class GameActivity extends AppCompatActivity {
         savedInstanceState.putString("deck", deck.saveString());
         savedInstanceState.putInt("time", secondsRemaining);
         savedInstanceState.putInt("score", score);
+        savedInstanceState.putBoolean("ongoing", gameOngoing);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        deck.loadString(savedInstanceState.getString("deck"));
-        secondsRemaining = savedInstanceState.getInt("time");
-        score = savedInstanceState.getInt("score");
-        refreshDraw();
+        if (!savedInstanceState.getBoolean("ongoing")) {
+            deck.loadString(savedInstanceState.getString("deck"));
+            secondsRemaining = savedInstanceState.getInt("time");
+            score = savedInstanceState.getInt("score");
+            refreshDraw();
+        }
     }
 
     public void refreshDraw() {
