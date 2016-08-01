@@ -610,4 +610,19 @@ public class Deck {
             for (int i2 = 0; i2 < width(); i2++)
                 refreshValue(i1, i2);
     }
+
+    public String saveString() {
+        String s = "";
+        for (int i1 = 0; i1 < cards.length; i1++)
+            for (int i2 = 0; i2 < cards[0].length; i2++)
+                s += cards[i1][i2].saveString() + "\t";
+        return s;
+    }
+
+    public void loadString(String s) {
+        String[] data = s.split("\t");
+        for (int i = 0; i < data.length; i++)
+            cards[i / width()][i % width()].loadString(data[i]);
+        refreshAllValues();
+    }
 }

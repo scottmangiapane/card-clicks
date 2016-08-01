@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
-    public static AppCompatActivity gameActivity;
+    public static AppCompatActivity activity;
     private boolean gameOngoing;
     private int score;
     private int secondsRemaining;
@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        gameActivity = this;
+        activity = this;
         gameOngoing = true;
         score = 0;
         secondsRemaining = 121000;
@@ -136,6 +136,23 @@ public class GameActivity extends AppCompatActivity {
         refreshDraw();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("deck", deck.saveString());
+        savedInstanceState.putInt("time", secondsRemaining);
+        savedInstanceState.putInt("score", score);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        deck.loadString(savedInstanceState.getString("deck"));
+        secondsRemaining = savedInstanceState.getInt("time");
+        score = savedInstanceState.getInt("score");
+        refreshDraw();
+    }
+
     public void refreshDraw() {
         for (int i1 = 0; i1 < deck.height(); i1++)
             for (int i2 = 0; i2 < deck.width(); i2++) {
@@ -152,6 +169,7 @@ public class GameActivity extends AppCompatActivity {
                             + selectedCard3x + selectedCard3y > -6)
                         gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
             }
+        finalScore.setText("Score: " + score);
     }
 
     @Override
@@ -210,7 +228,7 @@ public class GameActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(GameActivity.this, GameActivity.class);
                             startActivity(intent);
-                            gameActivity.finish();
+                            activity.finish();
                             overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
                         }
                     });
@@ -251,7 +269,7 @@ public class GameActivity extends AppCompatActivity {
                         }
                     finalScore.setText("Score: " + score + "     High: "
                             + settings.getInt("HIGH_SCORE_1", 0));
-                    timeCount.setText("00:00");
+                    timeCount.setText("0:00");
                 }
             }.start();
         }
