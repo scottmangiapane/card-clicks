@@ -27,7 +27,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView buttonPauseRestart;
     private TextView buttonStopExit;
     private ImageView[][] gridDraw;
-    private TextView finalScore;
+    private TextView scoreView;
     private TextView timeCount;
 
     @Override
@@ -60,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
                 {(ImageView) findViewById(R.id.imageView_3_0),
                         (ImageView) findViewById(R.id.imageView_3_1),
                         (ImageView) findViewById(R.id.imageView_3_2)}};
-        finalScore = (TextView) findViewById(R.id.final_score);
+        scoreView = (TextView) findViewById(R.id.final_score);
         timeCount = (TextView) findViewById(R.id.time_count);
         for (int i1 = 0; i1 < deck.height(); i1++)
             for (int i2 = 0; i2 < deck.width(); i2++) {
@@ -99,7 +99,7 @@ public class GameActivity extends AppCompatActivity {
                             if (deck.isSet(selectedCard1x, selectedCard1y,
                                     selectedCard2x, selectedCard2y,
                                     selectedCard3x, selectedCard3y)) {
-                                finalScore.setText("SCORE: " + ++score);
+                                scoreView.setText(R.string.score + ++score);
                                 deck.setNewCard(selectedCard1x, selectedCard1y);
                                 deck.setNewCard(selectedCard2x, selectedCard2y);
                                 deck.setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
@@ -172,7 +172,7 @@ public class GameActivity extends AppCompatActivity {
                             + selectedCard3x + selectedCard3y > -6)
                         gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
             }
-        finalScore.setText("SCORE: " + score);
+        scoreView.setText(R.string.score + score);
     }
 
     @Override
@@ -199,9 +199,10 @@ public class GameActivity extends AppCompatActivity {
             timer = new CountDownTimer(secondsRemaining, 1000) {
                 public void onTick(long millisUntilFinished) {
                     secondsRemaining = (int) millisUntilFinished;
-                    timeCount.setText("" + (millisUntilFinished / 60000) + ":"
+                    String timeText = "" + (millisUntilFinished / 60000) + ":"
                             + (((millisUntilFinished / 1000) % 60) / 10)
-                            + (((millisUntilFinished / 1000) % 60) % 10));
+                            + (((millisUntilFinished / 1000) % 60) % 10);
+                    timeCount.setText(timeText);
                 }
 
                 public void onFinish() {
@@ -224,7 +225,7 @@ public class GameActivity extends AppCompatActivity {
                     editor.apply();
                     gameOngoing = false;
                     buttonPauseRestart.setBackgroundColor(getResources().getColor(R.color.red));
-                    buttonPauseRestart.setText("RESTART");
+                    buttonPauseRestart.setText(R.string.restart);
                     buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -234,7 +235,7 @@ public class GameActivity extends AppCompatActivity {
                             overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
                         }
                     });
-                    buttonStopExit.setText("EXIT");
+                    buttonStopExit.setText(R.string.exit);
                     buttonStopExit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -269,8 +270,8 @@ public class GameActivity extends AppCompatActivity {
                                 }
                             });
                         }
-                    finalScore.setText("SCORE: " + score + "     HIGH: "
-                            + sp.getInt("score_1", 0));
+                    String scoreText = "SCORE: " + score + "     HIGH: " + sp.getInt("score_1", 0);
+                    scoreView.setText(scoreText);
                     timeCount.setText("0:00");
                 }
             }.start();
