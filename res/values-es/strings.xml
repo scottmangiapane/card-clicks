@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Card Cliques</string>
+
+    <!-- MainActivity -->
+    <string name="high_scores">PUNTUACIÓN ALTO</string>
+    <string name="clique"> clique</string>
+    <string name="cliques"> cliques</string>
+    <string name="how_to_play">CÓMO JUGAR</string>
+    <string name="play_game">JUGAR JUEGO</string>
+
+    <!-- GameActivity -->
+    <string name="score">PUNTOS: </string>
+    <string name="stop">DETENER</string>
+    <string name="pause">PAUSA</string>
+    <string name="restart">REINICIAR</string>
+    <string name="exit">SALIR</string>
+
+    <!-- PausedActivity -->
+    <string name="resume_game">REANUDAR EL JUEGO</string>
+
+    <!-- HelpActivity -->
+    <string name="instructions">INSTRUCCIONES</string>
+    <string name="instructions_long">Una clique es un grupo de tres cartas donde cada rasgo (el color, relleno, el número, y la forma) es completamente diferente o totalmente el mismo para cada tarjeta. Encuentra tantas cliques que pueda antes de que acabe el tiempo.</string>
+    <string name="example">EJEMPLO</string>
+    <string name="return_to_menu">VOLVER AL MENÚ</string>
+
+    <!-- Rate Dialog -->
+    <string name="rate_card_cliques">Valorar Card Cliques</string>
+    <string name="rate_message">¿Le gustaría calificar Card Cliques en la tienda de Google Play?</string>
+    <string name="sure">Claro</string>
+    <string name="no_thanks">No</string>
+</resources>
