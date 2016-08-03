@@ -16,6 +16,24 @@ public class HelpActivity extends AppCompatActivity {
                 refresh();
             }
         });
+        findViewById(R.id.help_card_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refresh();
+            }
+        });
+        findViewById(R.id.help_card_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refresh();
+            }
+        });
+        findViewById(R.id.help_card_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refresh();
+            }
+        });
         findViewById(R.id.button_return_to_menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
