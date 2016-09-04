@@ -54,9 +54,9 @@ public class HelpActivity extends AppCompatActivity {
     private void refresh() {
         Deck deck = new Deck(1, 3);
         ImageView[] gridDraw = new ImageView[]{
-                (ImageView) findViewById(R.id.imageView_0),
-                (ImageView) findViewById(R.id.imageView_1),
-                (ImageView) findViewById(R.id.imageView_2)};
+                (ImageView) findViewById(R.id.help_card_1),
+                (ImageView) findViewById(R.id.help_card_2),
+                (ImageView) findViewById(R.id.help_card_3)};
         for (int i = 0; i < deck.width(); i++)
             deck.setNewCard(0, i);
         deck.refreshAllValues();
