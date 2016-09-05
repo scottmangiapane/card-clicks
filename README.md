@@ -1,6 +1,6 @@
 ## Card Cliques
 
-A clique is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card. Find as many cliques as you can before the timer runs out.
+Card Cliques is a fun and challenging card game in which players find three cards where each trait (color, shape, fill, or number) is all different or all the same.
 
 ## Download
 
