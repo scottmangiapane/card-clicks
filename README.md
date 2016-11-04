@@ -16,8 +16,8 @@ https://play.google.com/store/apps/details?id=com.scottmangiapane.cardcliques
 
 * Create a new project in Android Studio  
   Package name: com.scottmangiapane.cardcliques
-* Replace the contents of /app/source/main/ with this repo
-* Add dependencies to /app/build.gradle
+* Replace the contents of `/app/source/main/` with this repo
+* Add dependencies to `/app/build.gradle`
 
 ## Build Requirements
 
