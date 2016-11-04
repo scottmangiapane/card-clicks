@@ -8,20 +8,18 @@ https://play.google.com/store/apps/details?id=com.scottmangiapane.cardcliques
 
 ## Screenshots
 
-![Screenshot 1](screenshots/1_main.png)
-![Screenshot 2](screenshots/2_game.png)
-![Screenshot 3](screenshots/3_help.png)
+<img src="screenshots/1_main.png" width="200">
+<img src="screenshots/2_game.png" width="200">
+<img src="screenshots/3_help.png" width="200">
 
 ## Build Instructions
 
-* Install the required tools
-* Create a new project in Android Studio
+* Create a new project in Android Studio  
   Package name: com.scottmangiapane.cardcliques
 * Replace the contents of /app/source/main/ with this repo
-* Add any libraries to /libs/
-* Add any dependencies to /app/build.gradle
+* Add dependencies to /app/build.gradle
 
-## Required Tools
+## Build Requirements
 
 * Android Studio
 * Android Software Development Kit
@@ -29,7 +27,7 @@ https://play.google.com/store/apps/details?id=com.scottmangiapane.cardcliques
 
 ## Dependencies
 
-In the project's `app/build.gradle` file, add the following dependency.
+In the project's `/app/build.gradle` file, add the following dependency.
 ```groovy
 dependencies {
     compile 'com.android.support:appcompat-v7:24.1.1'
