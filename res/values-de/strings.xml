@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="example">BEISPIEL</string>
+    <string name="exit">AUSFAHRT</string>
+    <string name="high">BESTE:</string>
+    <string name="high_scores">HOCHSPIELE</string>
+    <string name="how_to_play">SPIELANLEITUNG</string>
+    <string name="instructions">ANLEITUNG</string>
+    <string name="instructions_long">A Clique ist eine Gruppe von drei Karten, wobei jeder Merkmal (Farbe, Füllung, Zahl und Form) für jede Karte völlig unterschiedlich oder völlig gleich ist. Finden Sie so viele Cliques wie Sie können, bevor der Timer abläuft.</string>
+    <string name="no_thanks">Nein Danke</string>
+    <string name="pause">HALTEN</string>
+    <string name="play_game">SPIEL SPIELEN</string>
+    <string name="rate_card_cliques">Bewerte Card Cliques</string>
+    <string name="rate_message">Möchten Sie Card Cliques im Google Play Store bewerten?</string>
+    <string name="restart">NEUSTART</string>
+    <string name="resume_game">WIEDER STARTEN</string>
+    <string name="sure">Sicher</string>
+    <string name="stop">STOPPEN</string>
+    <string name="score">ERGEBNIS:</string>
+    <string name="return_to_menu">ZURÜCK ZUM MENÜ</string>
+</resources>

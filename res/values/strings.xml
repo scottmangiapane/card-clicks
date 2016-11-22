@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Card Cliques</string>
+    <string name="app_name" translatable="false">Card Cliques</string>
 
     <!-- MainActivity -->
     <string name="high_scores">HIGH SCORES</string>
-    <string name="clique">clique</string>
-    <string name="cliques">cliques</string>
+    <string name="clique" translatable="false">clique</string>
+    <string name="cliques" translatable="false">cliques</string>
     <string name="how_to_play">HOW TO PLAY</string>
     <string name="play_game">PLAY GAME</string>
 

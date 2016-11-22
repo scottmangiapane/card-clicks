@@ -1,10 +1,7 @@
 <resources>
-    <string name="app_name">Card Cliques</string>
 
     <!-- MainActivity -->
     <string name="high_scores">PUNTUACIÓN ALTO</string>
-    <string name="clique">clique</string>
-    <string name="cliques">cliques</string>
     <string name="how_to_play">CÓMO JUGAR</string>
     <string name="play_game">JUGAR JUEGO</string>
 
