@@ -4,7 +4,9 @@ Card Cliques is a fun and challenging card game in which players find as many cl
 
 ## Download
 
-https://play.google.com/store/apps/details?id=com.scottmangiapane.cardcliques
+https://github.com/scottmangiapane/card-cliques/releases
+
+You can download the latest "app-release.apk" from the link above and sideload it to your Android device.
 
 ## Screenshots
 
