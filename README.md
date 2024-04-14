@@ -10,6 +10,5 @@ You can download the latest `.apk` file from the release page and sideload it on
 
 ## Screenshots
 
-<img src="screenshots/1_main.png" width="200">
-<img src="screenshots/2_game.png" width="200">
-<img src="screenshots/3_help.png" width="200">
+| ![Screenshot 1](screenshots/1_main.png) | ![Screenshot 2](screenshots/2_game.png) | ![Screenshot 3](screenshots/3_help.png) |
+| ------------- | ------------- | ------------- |
