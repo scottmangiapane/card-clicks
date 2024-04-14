@@ -23,7 +23,7 @@
             android:background="@color/dark_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_large"
-            android:text="--:--"
+            android:text="@string/empty_timer"
             android:textSize="@dimen/activity_text_timer"
             android:textStyle="bold" />
     </RelativeLayout>

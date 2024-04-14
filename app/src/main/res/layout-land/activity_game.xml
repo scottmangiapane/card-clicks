@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/dark_gray"
                 android:gravity="center"
-                android:text="--:--"
+                android:text="@string/empty_timer"
                 android:textSize="@dimen/activity_text_timer_land"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_dimen"
             android:gravity="center"
-            android:text="SCORE: 0"
+            android:text="@string/score"
             android:textStyle="bold" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:background="@color/light_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
-            android:text="STOP"
+            android:text="@string/stop"
             android:textStyle="bold" />
 
         <TextView
@@ -66,7 +66,7 @@
             android:background="@color/light_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
-            android:text="PAUSE"
+            android:text="@string/pause"
             android:textStyle="bold" />
     </LinearLayout>
 

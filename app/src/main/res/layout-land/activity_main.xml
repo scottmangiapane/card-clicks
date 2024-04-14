@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/activity_dimen_large"
-                        android:text="HIGH SCORES"
+                        android:text="@string/high_scores"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -70,7 +70,7 @@
                                 android:background="@color/dark_gray"
                                 android:gravity="center"
                                 android:padding="@dimen/activity_dimen_small"
-                                android:text="--" />
+                                android:text="@string/empty_score" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -92,7 +92,7 @@
                                 android:background="@color/dark_gray"
                                 android:gravity="center"
                                 android:padding="@dimen/activity_dimen_small"
-                                android:text="--" />
+                                android:text="@string/empty_score" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -112,7 +112,7 @@
                                 android:background="@color/dark_gray"
                                 android:gravity="center"
                                 android:padding="@dimen/activity_dimen_small"
-                                android:text="--" />
+                                android:text="@string/empty_score" />
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -125,7 +125,7 @@
                         android:background="@color/light_gray"
                         android:gravity="center"
                         android:padding="@dimen/activity_dimen_small"
-                        android:text="HOW TO PLAY"
+                        android:text="@string/how_to_play"
                         android:textStyle="bold" />
 
                     <TextView
@@ -137,7 +137,7 @@
                         android:background="@color/red"
                         android:gravity="center"
                         android:padding="@dimen/activity_dimen"
-                        android:text="PLAY GAME"
+                        android:text="@string/play_game"
                         android:textStyle="bold" />
                 </LinearLayout>
 

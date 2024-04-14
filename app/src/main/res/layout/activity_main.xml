@@ -37,7 +37,7 @@
             android:background="@color/dark_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
-            android:text="--" />
+            android:text="@string/empty_score" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -55,7 +55,7 @@
             android:background="@color/dark_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
-            android:text="--" />
+            android:text="@string/empty_score" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -73,7 +73,7 @@
             android:background="@color/dark_gray"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
-            android:text="--" />
+            android:text="@string/empty_score" />
     </RelativeLayout>
 
     <TextView

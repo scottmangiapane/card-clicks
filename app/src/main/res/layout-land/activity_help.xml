@@ -37,7 +37,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="INSTRUCTIONS"
+                        android:text="@string/instructions"
                         android:textStyle="bold" />
 
                     <TextView
@@ -45,7 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/activity_dimen_small"
-                        android:text="A click is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card. Find as many clicks as you can before the timer runs out." />
+                        android:text="@string/instructions_long" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:text="EXAMPLE"
+                            android:text="@string/example"
                             android:textStyle="bold" />
 
                         <ImageView
@@ -118,7 +118,7 @@
                         android:background="@color/red"
                         android:gravity="center"
                         android:padding="@dimen/activity_dimen"
-                        android:text="RETURN TO MENU"
+                        android:text="@string/return_to_menu"
                         android:textStyle="bold" />
                 </LinearLayout>
 
