@@ -1,4 +1,4 @@
-package com.scottmangiapane.cardcliques;
+package com.scottmangiapane.cardclicks;
 
 import android.app.Application;
 import android.content.SharedPreferences;

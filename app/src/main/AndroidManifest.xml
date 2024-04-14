@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.scottmangiapane.cardcliques">
+    package="com.scottmangiapane.cardclicks">
 
     <application
-        android:name=".OnAppStart"
+        android:name="com.scottmangiapane.cardclicks.OnAppStart"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.scottmangiapane.cardclicks.MainActivity"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,15 +20,12 @@
         </activity>
 
         <activity
-            android:name=".GameActivity"
-            android:label="@string/app_name" />
+            android:name="com.scottmangiapane.cardclicks.GameActivity" />
 
         <activity
-            android:name=".HelpActivity"
-            android:label="@string/app_name" />
+            android:name="com.scottmangiapane.cardclicks.HelpActivity" />
 
         <activity
-            android:name=".PausedActivity"
-            android:label="@string/app_name" />
+            android:name="com.scottmangiapane.cardclicks.PausedActivity" />
     </application>
 </manifest>

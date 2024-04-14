@@ -45,7 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/activity_dimen_small"
-                        android:text="A clique is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card. Find as many cliques as you can before the timer runs out." />
+                        android:text="A click is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card. Find as many clicks as you can before the timer runs out." />
 
                     <FrameLayout
                         android:layout_width="match_parent"

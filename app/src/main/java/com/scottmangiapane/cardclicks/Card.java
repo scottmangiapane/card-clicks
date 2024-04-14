@@ -1,4 +1,4 @@
-package com.scottmangiapane.cardcliques;
+package com.scottmangiapane.cardclicks;
 
 public class Card {
     public int drawable;

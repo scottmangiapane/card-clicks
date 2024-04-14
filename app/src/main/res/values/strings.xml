@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name" translatable="false">Card Cliques</string>
+    <string name="app_name" translatable="false">Card Clicks</string>
 
     <!-- MainActivity -->
     <string name="high_scores">HIGH SCORES</string>
-    <string name="clique" translatable="false">clique</string>
-    <string name="cliques" translatable="false">cliques</string>
+    <string name="click" translatable="false">click</string>
+    <string name="clicks" translatable="false">clicks</string>
     <string name="how_to_play">HOW TO PLAY</string>
     <string name="play_game">PLAY GAME</string>
 
@@ -21,13 +21,13 @@
 
     <!-- HelpActivity -->
     <string name="instructions">INSTRUCTIONS</string>
-    <string name="instructions_long">A clique is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card. Find as many cliques as you can before the timer runs out.</string>
+    <string name="instructions_long">A click is a group of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card. Find as many clicks as you can before the timer runs out.</string>
     <string name="example">EXAMPLE</string>
     <string name="return_to_menu">RETURN TO MENU</string>
 
     <!-- Rate Dialog -->
-    <string name="rate_card_cliques">Rate Card Cliques</string>
-    <string name="rate_message">Would you like to rate Card Cliques on the Google Play store?</string>
+    <string name="rate_card_clicks">Rate Card Clicks</string>
+    <string name="rate_message">Would you like to rate Card Clicks on the Google Play store?</string>
     <string name="sure">Sure</string>
     <string name="no_thanks">No thanks</string>
 </resources>

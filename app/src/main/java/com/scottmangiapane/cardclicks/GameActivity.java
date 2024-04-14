@@ -1,4 +1,4 @@
-package com.scottmangiapane.cardcliques;
+package com.scottmangiapane.cardclicks;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,10 +6,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class GameActivity extends AppCompatActivity {
     public static AppCompatActivity activity;
@@ -45,92 +45,80 @@ public class GameActivity extends AppCompatActivity {
         selectedCard3x = -1;
         selectedCard3y = -1;
         deck = new Deck(4, 3);
-        buttonPauseRestart = (TextView) findViewById(R.id.button_pause_restart);
-        buttonStopExit = (TextView) findViewById(R.id.button_stop_exit);
+        buttonPauseRestart = findViewById(R.id.button_pause_restart);
+        buttonStopExit = findViewById(R.id.button_stop_exit);
         gridDraw = new ImageView[][]{
-                {(ImageView) findViewById(R.id.imageView_0_0),
-                        (ImageView) findViewById(R.id.imageView_0_1),
-                        (ImageView) findViewById(R.id.imageView_0_2)},
-                {(ImageView) findViewById(R.id.imageView_1_0),
-                        (ImageView) findViewById(R.id.imageView_1_1),
-                        (ImageView) findViewById(R.id.imageView_1_2)},
-                {(ImageView) findViewById(R.id.imageView_2_0),
-                        (ImageView) findViewById(R.id.imageView_2_1),
-                        (ImageView) findViewById(R.id.imageView_2_2)},
-                {(ImageView) findViewById(R.id.imageView_3_0),
-                        (ImageView) findViewById(R.id.imageView_3_1),
-                        (ImageView) findViewById(R.id.imageView_3_2)}};
-        scoreView = (TextView) findViewById(R.id.final_score);
-        timeCount = (TextView) findViewById(R.id.time_count);
+                {findViewById(R.id.imageView_0_0),
+                        findViewById(R.id.imageView_0_1),
+                        findViewById(R.id.imageView_0_2)},
+                {findViewById(R.id.imageView_1_0),
+                        findViewById(R.id.imageView_1_1),
+                        findViewById(R.id.imageView_1_2)},
+                {findViewById(R.id.imageView_2_0),
+                        findViewById(R.id.imageView_2_1),
+                        findViewById(R.id.imageView_2_2)},
+                {findViewById(R.id.imageView_3_0),
+                        findViewById(R.id.imageView_3_1),
+                        findViewById(R.id.imageView_3_2)}};
+        scoreView = findViewById(R.id.final_score);
+        timeCount = findViewById(R.id.time_count);
         for (int i1 = 0; i1 < deck.height(); i1++)
             for (int i2 = 0; i2 < deck.width(); i2++) {
                 deck.setNewCard(i1, i2);
                 final int ia = i1;
                 final int ib = i2;
-                gridDraw[i1][i2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (selectedCard1x == -1) {
-                            selectedCard1x = ia;
-                            selectedCard1y = ib;
-                        } else if (selectedCard1x == ia && selectedCard1y == ib) {
-                            if (selectedCard2x != -1) {
-                                selectedCard1x = selectedCard2x;
-                                selectedCard1y = selectedCard2y;
-                                selectedCard2x = -1;
-                                selectedCard2y = -1;
-                            } else {
-                                selectedCard1x = -1;
-                                selectedCard1y = -1;
-                            }
-                        } else if (selectedCard2x == -1) {
-                            selectedCard2x = ia;
-                            selectedCard2y = ib;
-                        } else if (selectedCard1x == ia && selectedCard1y == ib) {
-                            selectedCard1x = -1;
-                            selectedCard1y = -1;
-                        } else if (selectedCard2x == ia && selectedCard2y == ib) {
+                gridDraw[i1][i2].setOnClickListener(view -> {
+                    if (selectedCard1x == -1) {
+                        selectedCard1x = ia;
+                        selectedCard1y = ib;
+                    } else if (selectedCard1x == ia && selectedCard1y == ib) {
+                        if (selectedCard2x != -1) {
+                            selectedCard1x = selectedCard2x;
+                            selectedCard1y = selectedCard2y;
                             selectedCard2x = -1;
                             selectedCard2y = -1;
                         } else {
-                            selectedCard3x = ia;
-                            selectedCard3y = ib;
-                            refreshDraw();
-                            if (deck.isSet(selectedCard1x, selectedCard1y,
-                                    selectedCard2x, selectedCard2y,
-                                    selectedCard3x, selectedCard3y)) {
-                                String scoreText = getString(R.string.score) + " " + ++score;
-                                scoreView.setText(scoreText);
-                                deck.setNewCard(selectedCard1x, selectedCard1y);
-                                deck.setNewCard(selectedCard2x, selectedCard2y);
-                                deck.setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
-                            }
                             selectedCard1x = -1;
                             selectedCard1y = -1;
-                            selectedCard2x = -1;
-                            selectedCard2y = -1;
-                            selectedCard3x = -1;
-                            selectedCard3y = -1;
-
                         }
+                    } else if (selectedCard2x == -1) {
+                        selectedCard2x = ia;
+                        selectedCard2y = ib;
+                    } else if (selectedCard2x == ia && selectedCard2y == ib) {
+                        selectedCard2x = -1;
+                        selectedCard2y = -1;
+                    } else {
+                        selectedCard3x = ia;
+                        selectedCard3y = ib;
                         refreshDraw();
+                        if (deck.isSet(selectedCard1x, selectedCard1y,
+                                selectedCard2x, selectedCard2y,
+                                selectedCard3x, selectedCard3y)) {
+                            String scoreText = getString(R.string.score) + " " + ++score;
+                            scoreView.setText(scoreText);
+                            deck.setNewCard(selectedCard1x, selectedCard1y);
+                            deck.setNewCard(selectedCard2x, selectedCard2y);
+                            deck.setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
+                        }
+                        selectedCard1x = -1;
+                        selectedCard1y = -1;
+                        selectedCard2x = -1;
+                        selectedCard2y = -1;
+                        selectedCard3x = -1;
+                        selectedCard3y = -1;
+
                     }
+                    refreshDraw();
                 });
             }
-        buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GameActivity.this, PausedActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
-            }
+        buttonPauseRestart.setOnClickListener(v -> {
+            Intent intent = new Intent(GameActivity.this, PausedActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
         });
-        buttonStopExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timer.cancel();
-                timer.onFinish();
-            }
+        buttonStopExit.setOnClickListener(v -> {
+            timer.cancel();
+            timer.onFinish();
         });
         deck.refreshAllValues();
         deck.setNewCardCheckSetPossible((int) (Math.random() * deck.height()), (int) (Math.random() * deck.width()));
@@ -184,7 +172,6 @@ public class GameActivity extends AppCompatActivity {
             startActivity(intent);
             overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
         }
-        return;
     }
 
     @Override
@@ -228,22 +215,16 @@ public class GameActivity extends AppCompatActivity {
                     gameOngoing = false;
                     buttonPauseRestart.setBackgroundColor(getResources().getColor(R.color.red));
                     buttonPauseRestart.setText(getString(R.string.restart));
-                    buttonPauseRestart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(GameActivity.this, GameActivity.class);
-                            startActivity(intent);
-                            activity.finish();
-                            overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
-                        }
+                    buttonPauseRestart.setOnClickListener(v -> {
+                        Intent intent = new Intent(GameActivity.this, GameActivity.class);
+                        startActivity(intent);
+                        activity.finish();
+                        overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
                     });
                     buttonStopExit.setText(getString(R.string.exit));
-                    buttonStopExit.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            finish();
-                            overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
-                        }
+                    buttonStopExit.setOnClickListener(v -> {
+                        finish();
+                        overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
                     });
                     selectedCard1x = -1;
                     selectedCard1y = -1;
@@ -266,10 +247,7 @@ public class GameActivity extends AppCompatActivity {
                             if (grid[i1][i2] == 0) {
                                 gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
                             }
-                            gridDraw[i1][i2].setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                }
+                            gridDraw[i1][i2].setOnClickListener(view -> {
                             });
                         }
                     String scoreText = getString(R.string.score) + " " + score
