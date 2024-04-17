@@ -8,7 +8,9 @@ import android.os.CountDownTimer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -30,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
             R.id.card_09, R.id.card_10, R.id.card_11, R.id.card_12};
 
     private final Game game = new Game(CARD_IDS.length);
+    private final Random generator = new Random();
 
     private List<ImageView> cards;
     private List<ImageView> selectedCards;
@@ -49,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_game);
 
         activity = this;
@@ -84,25 +89,24 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-//        TODO is this needed?
-//        savedInstanceState.putString("deck", deck.saveString());
-//        savedInstanceState.putInt("time", secondsRemaining);
-//        savedInstanceState.putInt("score", score);
-//        savedInstanceState.putBoolean("ongoing", gameOngoing);
+        // TODO save game state
+        // savedInstanceState.putParcelable("game", game);
+        savedInstanceState.putBoolean("isGameRunning", isGameRunning);
+        savedInstanceState.putInt("score", score);
+        savedInstanceState.putLong("timeRemaining", timeRemaining);
     }
 
     @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
+    public void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-//        TODO is this needed?
-//        if (savedInstanceState.getBoolean("ongoing")) {
-//            deck.loadString(savedInstanceState.getString("deck"));
-//            secondsRemaining = savedInstanceState.getInt("time");
-//            score = savedInstanceState.getInt("score");
-//            refreshDraw();
-//        }
+        // TODO save game state
+        // game = savedInstanceState.getParcelable("game", Game.class);
+        isGameRunning = savedInstanceState.getBoolean("isGameRunning");
+        score = savedInstanceState.getInt("score");
+        timeRemaining = savedInstanceState.getLong("timeRemaining");
+        refreshViews();
     }
 
     @Override
@@ -134,9 +138,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void onButtonClicked(ImageView button) {
-        if (!isGameRunning) {
-            return;
-        }
+        if (!isGameRunning) return;
 
         if (selectedCards.contains(button)) {
             selectedCards.remove(button);
@@ -166,12 +168,11 @@ public class GameActivity extends AppCompatActivity {
 
     private void refreshViews() {
         for (int i = 0; i < cards.size(); i++) {
-            cards.get(i).setColorFilter(null);
+            cards.get(i).setAlpha((selectedCards.isEmpty()) ? 1f : .5f);
             cards.get(i).setImageResource(game.get(i).drawable);
         }
-        for (ImageView button : selectedCards) {
-            button.setColorFilter(Color.argb(100, 0, 0, 0));
-        }
+        for (ImageView button : selectedCards)
+            button.setAlpha(1f);
         scoreView.setText(getString(R.string.score, score));
     }
 
@@ -196,9 +197,10 @@ public class GameActivity extends AppCompatActivity {
 
     private void endGame() {
         isGameRunning = false;
-        timer.cancel();
+        if (timer != null)
+            timer.cancel();
 
-        buttonPauseRestart.setBackgroundColor(getColor(R.color.red));
+        buttonPauseRestart.setBackgroundColor(getColor(R.color.colorDanger));
         buttonPauseRestart.setText(getString(R.string.restart));
         buttonPauseRestart.setOnClickListener(v -> this.recreate());
         buttonStopExit.setText(getString(R.string.exit));
@@ -208,15 +210,12 @@ public class GameActivity extends AppCompatActivity {
         });
         selectedCards.clear();
 
-        for (ImageView button : cards) {
-            button.setColorFilter(Color.argb(100, 0, 0, 0));
-        }
+        for (ImageView button : cards)
+            button.setAlpha(.5f);
         List<Integer[]> sets = game.getSets();
-        for (Integer[] set : sets) {
-            for (int index : set) {
-                cards.get(index).setColorFilter(null);
-            }
-        }
+        Integer[] set = sets.get(generator.nextInt(sets.size()));
+        for (int index : set)
+            cards.get(index).setAlpha(1f);
 
         scoreView.setText(String.format(
                 Locale.getDefault(),

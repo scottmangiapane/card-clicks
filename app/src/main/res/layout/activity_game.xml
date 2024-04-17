@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_gray"
+    android:background="@color/colorPrimary"
+    android:baselineAligned="false"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_dimen_screen_border"
@@ -12,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/light_gray"
+        android:background="@color/colorAccent"
         android:padding="@dimen/activity_dimen_extra_small">
 
         <TextView
@@ -20,7 +21,7 @@
             style="@android:style/TextAppearance.Holo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_gray"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_large"
             android:text="@string/empty_timer"
@@ -42,7 +43,7 @@
             android:layout_marginEnd="@dimen/activity_dimen_extra_small"
             android:layout_marginRight="@dimen/activity_dimen_extra_small"
             android:layout_weight="1"
-            android:background="@color/light_gray"
+            android:background="@color/colorAccent"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
             android:text="@string/stop"
@@ -56,7 +57,7 @@
             android:layout_marginLeft="@dimen/activity_dimen_extra_small"
             android:layout_marginStart="@dimen/activity_dimen_extra_small"
             android:layout_weight="1"
-            android:background="@color/light_gray"
+            android:background="@color/colorAccent"
             android:gravity="center"
             android:padding="@dimen/activity_dimen_small"
             android:text="@string/pause"

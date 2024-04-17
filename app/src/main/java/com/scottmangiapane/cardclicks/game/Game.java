@@ -25,9 +25,8 @@ public class Game {
     private void forceSet(int... indexes) {
         if (getSets().isEmpty()) {
             int swapIndex = generator.nextInt(current.length);
-            if (indexes.length > 0) {
+            if (indexes.length > 0)
                 swapIndex = indexes[generator.nextInt(indexes.length)];
-            }
             int i1, i2;
             do {
                 i1 = generator.nextInt(current.length);
@@ -80,9 +79,8 @@ public class Game {
 
     public void rotateCards(int... indexes) {
         shuffleArray(remaining);
-        for (int i = 0; i < indexes.length; i++) {
+        for (int i = 0; i < indexes.length; i++)
             setCard(indexes[i], remaining[i]);
-        }
         forceSet(indexes);
     }
 
@@ -90,16 +88,11 @@ public class Game {
         int index;
         T temp;
         Random random = new Random();
-        for (int i = array.length - 1; i > 0; i--)
-        {
+        for (int i = array.length - 1; i > 0; i--) {
             index = random.nextInt(i + 1);
             temp = array[index];
             array[index] = array[i];
             array[i] = temp;
         }
-    }
-
-    public int size() {
-        return current.length;
     }
 }

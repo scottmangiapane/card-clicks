@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_gray"
+    android:background="@color/colorPrimary"
+    android:baselineAligned="false"
     android:gravity="center"
     android:orientation="horizontal"
     android:padding="@dimen/activity_dimen_screen_border"
@@ -12,7 +13,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/activity_dimen_extra_small"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/light_gray"
+            android:background="@color/colorAccent"
             android:padding="@dimen/activity_dimen_extra_small">
 
             <TextView
@@ -28,7 +28,7 @@
                 style="@android:style/TextAppearance.Holo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/dark_gray"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="@string/empty_timer"
                 android:textSize="@dimen/activity_text_timer_land"
@@ -43,43 +43,48 @@
             android:gravity="center"
             android:text="@string/score"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/button_stop_exit"
-            style="@android:style/TextAppearance.Holo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_dimen_extra_small"
-            android:layout_marginTop="@dimen/activity_dimen"
-            android:background="@color/light_gray"
-            android:gravity="center"
-            android:padding="@dimen/activity_dimen_small"
-            android:text="@string/stop"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/button_pause_restart"
-            style="@android:style/TextAppearance.Holo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_dimen_extra_small"
-            android:background="@color/light_gray"
-            android:gravity="center"
-            android:padding="@dimen/activity_dimen_small"
-            android:text="@string/pause"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/activity_dimen_small"
-        android:layout_marginStart="@dimen/activity_dimen_small"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_dimen_extra_extra_small">
+        android:layout_marginStart="@dimen/activity_dimen"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/button_stop_exit"
+                style="@android:style/TextAppearance.Holo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/activity_dimen_small"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:padding="@dimen/activity_dimen_small"
+                android:text="@string/stop"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/button_pause_restart"
+                style="@android:style/TextAppearance.Holo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_dimen_small"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:padding="@dimen/activity_dimen_small"
+                android:text="@string/pause"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
@@ -87,7 +92,7 @@
                 android:id="@+id/card_01"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
@@ -96,7 +101,7 @@
                 android:id="@+id/card_02"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
@@ -105,31 +110,31 @@
                 android:id="@+id/card_03"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
+
+            <ImageView
+                android:id="@+id/card_04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/card_04"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:src="@drawable/card_empty" />
 
             <ImageView
                 android:id="@+id/card_05"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
@@ -138,22 +143,16 @@
                 android:id="@+id/card_06"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/card_07"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
@@ -162,31 +161,31 @@
                 android:id="@+id/card_08"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:src="@drawable/card_empty" />
-
-            <ImageView
-                android:id="@+id/card_09"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/card_09"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/card_empty" />
 
             <ImageView
                 android:id="@+id/card_10"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
@@ -195,7 +194,7 @@
                 android:id="@+id/card_11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
@@ -204,7 +203,7 @@
                 android:id="@+id/card_12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_dimen_extra_extra_small"
+                android:layout_margin="@dimen/activity_dimen_extra_small"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:src="@drawable/card_empty" />
