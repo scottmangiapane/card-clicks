@@ -5,257 +5,224 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+
+import com.scottmangiapane.cardclicks.game.Game;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class GameActivity extends AppCompatActivity {
     public static AppCompatActivity activity;
-    private boolean gameOngoing;
+
+    private final int[] CARD_IDS = {
+            R.id.card_01, R.id.card_02, R.id.card_03, R.id.card_04,
+            R.id.card_05, R.id.card_06, R.id.card_07, R.id.card_08,
+            R.id.card_09, R.id.card_10, R.id.card_11, R.id.card_12};
+
+    private final Game game = new Game(CARD_IDS.length);
+
+    private List<ImageView> cards;
+    private List<ImageView> selectedCards;
+
+    private boolean isGameRunning;
     private int score;
-    private int secondsRemaining;
-    private int selectedCard1x;
-    private int selectedCard1y;
-    private int selectedCard2x;
-    private int selectedCard2y;
-    private int selectedCard3x;
-    private int selectedCard3y;
-    private Deck deck;
-    private CountDownTimer timer;
+    private long timeRemaining;
+
     private TextView buttonPauseRestart;
     private TextView buttonStopExit;
-    private ImageView[][] gridDraw;
     private TextView scoreView;
     private TextView timeCount;
+
+    private CountDownTimer timer;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
         activity = this;
-        gameOngoing = true;
+
+        cards = Arrays
+                .stream(CARD_IDS)
+                .mapToObj(id -> (ImageView) findViewById(id))
+                .collect(Collectors.toList());
+        cards.forEach(b -> b.setOnClickListener(v -> onButtonClicked((ImageView) v)));
+        selectedCards = new ArrayList<>();
+
+        isGameRunning = true;
         score = 0;
-        secondsRemaining = 121000;
-        selectedCard1x = -1;
-        selectedCard1y = -1;
-        selectedCard2x = -1;
-        selectedCard2y = -1;
-        selectedCard3x = -1;
-        selectedCard3y = -1;
-        deck = new Deck(4, 3);
+        timeRemaining = 121000;
+
         buttonPauseRestart = findViewById(R.id.button_pause_restart);
+        buttonPauseRestart.setOnClickListener(v -> pauseGame());
         buttonStopExit = findViewById(R.id.button_stop_exit);
-        gridDraw = new ImageView[][]{
-                {findViewById(R.id.imageView_0_0),
-                        findViewById(R.id.imageView_0_1),
-                        findViewById(R.id.imageView_0_2)},
-                {findViewById(R.id.imageView_1_0),
-                        findViewById(R.id.imageView_1_1),
-                        findViewById(R.id.imageView_1_2)},
-                {findViewById(R.id.imageView_2_0),
-                        findViewById(R.id.imageView_2_1),
-                        findViewById(R.id.imageView_2_2)},
-                {findViewById(R.id.imageView_3_0),
-                        findViewById(R.id.imageView_3_1),
-                        findViewById(R.id.imageView_3_2)}};
+        buttonStopExit.setOnClickListener(v -> endGame());
         scoreView = findViewById(R.id.final_score);
         timeCount = findViewById(R.id.time_count);
-        for (int i1 = 0; i1 < deck.height(); i1++)
-            for (int i2 = 0; i2 < deck.width(); i2++) {
-                deck.setNewCard(i1, i2);
-                final int ia = i1;
-                final int ib = i2;
-                gridDraw[i1][i2].setOnClickListener(view -> {
-                    if (selectedCard1x == -1) {
-                        selectedCard1x = ia;
-                        selectedCard1y = ib;
-                    } else if (selectedCard1x == ia && selectedCard1y == ib) {
-                        if (selectedCard2x != -1) {
-                            selectedCard1x = selectedCard2x;
-                            selectedCard1y = selectedCard2y;
-                            selectedCard2x = -1;
-                            selectedCard2y = -1;
-                        } else {
-                            selectedCard1x = -1;
-                            selectedCard1y = -1;
-                        }
-                    } else if (selectedCard2x == -1) {
-                        selectedCard2x = ia;
-                        selectedCard2y = ib;
-                    } else if (selectedCard2x == ia && selectedCard2y == ib) {
-                        selectedCard2x = -1;
-                        selectedCard2y = -1;
-                    } else {
-                        selectedCard3x = ia;
-                        selectedCard3y = ib;
-                        refreshDraw();
-                        if (deck.isSet(selectedCard1x, selectedCard1y,
-                                selectedCard2x, selectedCard2y,
-                                selectedCard3x, selectedCard3y)) {
-                            String scoreText = getString(R.string.score) + " " + ++score;
-                            scoreView.setText(scoreText);
-                            deck.setNewCard(selectedCard1x, selectedCard1y);
-                            deck.setNewCard(selectedCard2x, selectedCard2y);
-                            deck.setNewCardCheckSetPossible(selectedCard3x, selectedCard3y);
-                        }
-                        selectedCard1x = -1;
-                        selectedCard1y = -1;
-                        selectedCard2x = -1;
-                        selectedCard2y = -1;
-                        selectedCard3x = -1;
-                        selectedCard3y = -1;
+        refreshViews();
 
-                    }
-                    refreshDraw();
-                });
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (isGameRunning)
+                    pauseGame();
             }
-        buttonPauseRestart.setOnClickListener(v -> {
-            Intent intent = new Intent(GameActivity.this, PausedActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
         });
-        buttonStopExit.setOnClickListener(v -> {
-            timer.cancel();
-            timer.onFinish();
-        });
-        deck.refreshAllValues();
-        deck.setNewCardCheckSetPossible((int) (Math.random() * deck.height()), (int) (Math.random() * deck.width()));
-        refreshDraw();
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putString("deck", deck.saveString());
-        savedInstanceState.putInt("time", secondsRemaining);
-        savedInstanceState.putInt("score", score);
-        savedInstanceState.putBoolean("ongoing", gameOngoing);
+//        TODO is this needed?
+//        savedInstanceState.putString("deck", deck.saveString());
+//        savedInstanceState.putInt("time", secondsRemaining);
+//        savedInstanceState.putInt("score", score);
+//        savedInstanceState.putBoolean("ongoing", gameOngoing);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if (savedInstanceState.getBoolean("ongoing")) {
-            deck.loadString(savedInstanceState.getString("deck"));
-            secondsRemaining = savedInstanceState.getInt("time");
-            score = savedInstanceState.getInt("score");
-            refreshDraw();
-        }
-    }
-
-    public void refreshDraw() {
-        for (int i1 = 0; i1 < deck.height(); i1++)
-            for (int i2 = 0; i2 < deck.width(); i2++) {
-                gridDraw[i1][i2].setColorFilter(null);
-                if (deck.cards[i1][i2].drawable == 0)
-                    gridDraw[i1][i2].setImageResource(R.drawable.card_empty);
-                else
-                    gridDraw[i1][i2].setImageResource(deck.cards[i1][i2].drawable);
-                if ((i1 != selectedCard1x || i2 != selectedCard1y)
-                        && (i1 != selectedCard2x || i2 != selectedCard2y)
-                        && (i1 != selectedCard3x || i2 != selectedCard3y))
-                    if (selectedCard1x + selectedCard1y
-                            + selectedCard2x + selectedCard2y
-                            + selectedCard3x + selectedCard3y > -6)
-                        gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
-            }
-        String scoreText = getString(R.string.score) + " " + score;
-        scoreView.setText(scoreText);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (gameOngoing) {
-            Intent intent = new Intent(GameActivity.this, PausedActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
-        }
+//        TODO is this needed?
+//        if (savedInstanceState.getBoolean("ongoing")) {
+//            deck.loadString(savedInstanceState.getString("deck"));
+//            secondsRemaining = savedInstanceState.getInt("time");
+//            score = savedInstanceState.getInt("score");
+//            refreshDraw();
+//        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (gameOngoing)
+        if (isGameRunning)
             timer.cancel();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (gameOngoing) {
-            timer = new CountDownTimer(secondsRemaining, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    secondsRemaining = (int) millisUntilFinished;
-                    String timeText = "" + (millisUntilFinished / 60000) + ":"
-                            + (((millisUntilFinished / 1000) % 60) / 10)
-                            + (((millisUntilFinished / 1000) % 60) % 10);
-                    timeCount.setText(timeText);
+        if (isGameRunning) {
+            timer = new CountDownTimer(timeRemaining, 1000) {
+                public void onTick(long milliseconds) {
+                    timeRemaining = milliseconds;
+                    timeCount.setText(String.format(
+                            Locale.getDefault(),
+                            "%d:%02d",
+                            TimeUnit.MILLISECONDS.toMinutes(milliseconds),
+                            TimeUnit.MILLISECONDS.toSeconds(milliseconds) % 60));
                 }
 
                 public void onFinish() {
-                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    SharedPreferences.Editor editor = sp.edit();
-                    if (score > sp.getInt("score_3", 0)) {
-                        if (score > sp.getInt("score_2", 0)) {
-                            if (score > sp.getInt("score_1", 0)) {
-                                editor.putInt("score_3", sp.getInt("score_2", 0));
-                                editor.putInt("score_2", sp.getInt("score_1", 0));
-                                editor.putInt("score_1", score);
-                            } else {
-                                editor.putInt("score_3", sp.getInt("score_2", 0));
-                                editor.putInt("score_2", score);
-                            }
-                        } else {
-                            editor.putInt("score_3", score);
-                        }
-                    }
-                    editor.apply();
-                    gameOngoing = false;
-                    buttonPauseRestart.setBackgroundColor(getResources().getColor(R.color.red));
-                    buttonPauseRestart.setText(getString(R.string.restart));
-                    buttonPauseRestart.setOnClickListener(v -> {
-                        Intent intent = new Intent(GameActivity.this, GameActivity.class);
-                        startActivity(intent);
-                        activity.finish();
-                        overridePendingTransition(R.transition.zoom_1, R.transition.zoom_2);
-                    });
-                    buttonStopExit.setText(getString(R.string.exit));
-                    buttonStopExit.setOnClickListener(v -> {
-                        finish();
-                        overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
-                    });
-                    selectedCard1x = -1;
-                    selectedCard1y = -1;
-                    selectedCard2x = -1;
-                    selectedCard2y = -1;
-                    selectedCard3x = -1;
-                    selectedCard3y = -1;
-                    int[][] grid = new int[4][3];
-                    for (int i1 = 0; i1 < 10; i1++)
-                        for (int i2 = i1 + 1; i2 < 11; i2++)
-                            for (int i3 = i2 + 1; i3 < 12; i3++)
-                                if (deck.isSet(i1 / 3, i1 % 3, i2 / 3, i2 % 3, i3 / 3, i3 % 3)) {
-                                    grid[i1 / 3][i1 % 3] = 1;
-                                    grid[i2 / 3][i2 % 3] = 1;
-                                    grid[i3 / 3][i3 % 3] = 1;
-                                }
-                    for (int i1 = 0; i1 < deck.height(); i1++)
-                        for (int i2 = 0; i2 < deck.width(); i2++) {
-                            gridDraw[i1][i2].setColorFilter(null);
-                            if (grid[i1][i2] == 0) {
-                                gridDraw[i1][i2].setColorFilter(Color.argb(150, 0, 0, 0));
-                            }
-                            gridDraw[i1][i2].setOnClickListener(view -> {
-                            });
-                        }
-                    String scoreText = getString(R.string.score) + " " + score
-                            + "     " + getString(R.string.high) + " " + sp.getInt("score_1", 0);
-                    scoreView.setText(scoreText);
-                    timeCount.setText("0:00");
+                    endGame();
                 }
             }.start();
         }
+    }
+
+    private void onButtonClicked(ImageView button) {
+        if (!isGameRunning) {
+            return;
+        }
+
+        if (selectedCards.contains(button)) {
+            selectedCards.remove(button);
+            refreshViews();
+            return;
+        }
+        selectedCards.add(button);
+        refreshViews();
+
+        if (selectedCards.size() == 3) {
+            if (game.isSet(
+                    cards.indexOf(selectedCards.get(0)),
+                    cards.indexOf(selectedCards.get(1)),
+                    cards.indexOf(selectedCards.get(2)))) {
+                String scoreText = getString(R.string.score, ++score);
+                scoreView.setText(scoreText);
+                saveScore();
+                game.rotateCards(
+                        cards.indexOf(selectedCards.get(0)),
+                        cards.indexOf(selectedCards.get(1)),
+                        cards.indexOf(selectedCards.get(2)));
+            }
+            selectedCards.clear();
+            refreshViews();
+        }
+    }
+
+    private void refreshViews() {
+        for (int i = 0; i < cards.size(); i++) {
+            cards.get(i).setColorFilter(null);
+            cards.get(i).setImageResource(game.get(i).drawable);
+        }
+        for (ImageView button : selectedCards) {
+            button.setColorFilter(Color.argb(100, 0, 0, 0));
+        }
+        scoreView.setText(getString(R.string.score, score));
+    }
+
+    private void saveScore() {
+        SharedPreferences.Editor editor = sp.edit();
+        List<Integer> scores = new ArrayList<>();
+        scores.add(sp.getInt("score_1", 0));
+        scores.add(sp.getInt("score_2", 0));
+        scores.add(sp.getInt("score_3", 0));
+        scores.add(score);
+        scores.sort((a, b) -> b - a);
+        editor.putInt("score_1", scores.get(0));
+        editor.putInt("score_2", scores.get(1));
+        editor.putInt("score_3", scores.get(2));
+        editor.apply();
+    }
+
+    private void pauseGame() {
+        Intent intent = new Intent(GameActivity.this, PausedActivity.class);
+        startActivity(intent);
+    }
+
+    private void endGame() {
+        isGameRunning = false;
+        timer.cancel();
+
+        buttonPauseRestart.setBackgroundColor(getColor(R.color.red));
+        buttonPauseRestart.setText(getString(R.string.restart));
+        buttonPauseRestart.setOnClickListener(v -> this.recreate());
+        buttonStopExit.setText(getString(R.string.exit));
+        buttonStopExit.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
+        });
+        selectedCards.clear();
+
+        for (ImageView button : cards) {
+            button.setColorFilter(Color.argb(100, 0, 0, 0));
+        }
+        List<Integer[]> sets = game.getSets();
+        for (Integer[] set : sets) {
+            for (int index : set) {
+                cards.get(index).setColorFilter(null);
+            }
+        }
+
+        scoreView.setText(String.format(
+                Locale.getDefault(),
+                "%s · %s",
+                getString(R.string.score, score),
+                getString(R.string.high, sp.getInt("score_1", 0))));
+        timeCount.setText(R.string.empty_timer);
     }
 }

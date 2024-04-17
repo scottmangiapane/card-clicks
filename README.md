@@ -1,6 +1,6 @@
 ## Card Clicks
 
-Card Clicks is a fun and challenging card game where players find groups of three cards as fast as they can before the timer runs out. Each trait (color, fill, number, and shape) must be entirely different or entirely the same for each card in the group.
+Card Clicks is a fun and challenging card game where players find sets of three cards as fast as they can before the timer runs out. Each trait (color, fill, number, and shape) must be entirely different or entirely the same for each card in the set.
 
 ## Download
 

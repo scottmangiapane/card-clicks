@@ -4,15 +4,15 @@
     <!-- MainActivity -->
     <string name="high_scores">HIGH SCORES</string>
     <string name="empty_score" translatable="false">--</string>
-    <string name="group">group</string>
-    <string name="groups">groups</string>
+    <string name="set">%1$d set</string>
+    <string name="sets">%1$d sets</string>
     <string name="how_to_play">HOW TO PLAY</string>
     <string name="play_game">PLAY GAME</string>
 
     <!-- GameActivity -->
     <string name="empty_timer" translatable="false">--:--</string>
-    <string name="score">SCORE:</string>
-    <string name="high">HIGH:</string>
+    <string name="score">SCORE: %1$d</string>
+    <string name="high">HIGH: %1$d</string>
     <string name="stop">STOP</string>
     <string name="pause">PAUSE</string>
     <string name="restart">RESTART</string>
@@ -23,7 +23,7 @@
 
     <!-- HelpActivity -->
     <string name="instructions">INSTRUCTIONS</string>
-    <string name="instructions_long">Find groups of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card in the group. Find as many as you can before the timer runs out.</string>
+    <string name="instructions_long">Find sets of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card in the set. Find as many as you can before the timer runs out.</string>
     <string name="example">EXAMPLE</string>
     <string name="return_to_menu">RETURN TO MENU</string>
 

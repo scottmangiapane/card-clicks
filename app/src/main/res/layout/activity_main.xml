@@ -77,7 +77,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/button_about"
+        android:id="@+id/button_help"
         style="@android:style/TextAppearance.Holo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -9,12 +9,6 @@ public class PausedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paused);
-        findViewById(R.id.button_resume_game).setOnClickListener(v -> {
-            finish();
-            overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
-        });
+        findViewById(R.id.button_resume_game).setOnClickListener(v -> finish());
     }
-
-    @Override
-    public void onBackPressed() {}
 }
