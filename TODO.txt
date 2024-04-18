@@ -1,0 +1,2 @@
+- investigate modern ways of creating UIs. Has Jetpack Compose replaced XML?
+- vectorize images

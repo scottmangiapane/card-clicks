@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.scottmangiapane.cardclicks">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name="com.scottmangiapane.cardclicks.OnAppStart"
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-        <activity android:name="com.scottmangiapane.cardclicks.MainActivity"
-            android:exported="true">
-
+        android:theme="@style/Theme.CardClicks"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.CardClicks">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -20,12 +23,13 @@
         </activity>
 
         <activity
-            android:name="com.scottmangiapane.cardclicks.GameActivity" />
+            android:name=".GameActivity" />
 
         <activity
-            android:name="com.scottmangiapane.cardclicks.HelpActivity" />
+            android:name=".HelpActivity" />
 
         <activity
-            android:name="com.scottmangiapane.cardclicks.PausedActivity" />
+            android:name=".PausedActivity" />
     </application>
+
 </manifest>

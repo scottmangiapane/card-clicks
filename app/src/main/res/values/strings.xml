@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Card Clicks</string>
+    <string name="app_name">Card Clicks</string>
 
     <!-- MainActivity -->
     <string name="high_scores">HIGH SCORES</string>
