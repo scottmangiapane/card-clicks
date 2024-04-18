@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -28,13 +27,12 @@ public class GameActivity extends AppCompatActivity {
             R.id.card_09, R.id.card_10, R.id.card_11, R.id.card_12};
     private static final long GAME_DURATION = 121000;
 
-    private final Random generator = new Random();
-
     private List<ImageView> cards;
     private List<ImageView> selectedCards;
     private CardViewModel vm;
 
-    private CountDownTimer timer;
+    private CountDownTimer gameTimer;
+    private CountDownTimer showSetsTimer;
     private SharedPreferences sp;
 
     private TextView buttonPauseRestart;
@@ -67,8 +65,6 @@ public class GameActivity extends AppCompatActivity {
         timeCount = findViewById(R.id.time_count);
 
         refreshViews();
-        if (!vm.isGameRunning)
-            endGame();
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -82,29 +78,33 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        if (timer != null)
-            timer.cancel();
+        if (gameTimer != null)
+            gameTimer.cancel();
+        if (showSetsTimer != null)
+            showSetsTimer.cancel();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (vm.isGameRunning) {
-            timer = new CountDownTimer(vm.timeRemaining, 1000) {
-                public void onTick(long milliseconds) {
-                    vm.timeRemaining = milliseconds;
-                    timeCount.setText(String.format(
-                            Locale.getDefault(),
-                            "%d:%02d",
-                            TimeUnit.MILLISECONDS.toMinutes(milliseconds),
-                            TimeUnit.MILLISECONDS.toSeconds(milliseconds) % 60));
-                }
-
-                public void onFinish() {
-                    endGame();
-                }
-            }.start();
+        if (!vm.isGameRunning) {
+            endGame();
+            return;
         }
+        gameTimer = new CountDownTimer(vm.timeRemaining, 200) {
+            public void onTick(long milliseconds) {
+                vm.timeRemaining = milliseconds;
+                timeCount.setText(String.format(
+                        Locale.getDefault(),
+                        "%d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes(milliseconds),
+                        TimeUnit.MILLISECONDS.toSeconds(milliseconds) % 60));
+            }
+
+            public void onFinish() {
+                endGame();
+            }
+        }.start();
     }
 
     @Override
@@ -115,8 +115,8 @@ public class GameActivity extends AppCompatActivity {
 
     private void endGame() {
         vm.isGameRunning = false;
-        if (timer != null)
-            timer.cancel();
+        if (gameTimer != null)
+            gameTimer.cancel();
 
         buttonPauseRestart.setBackgroundColor(getColor(R.color.colorDanger));
         buttonPauseRestart.setText(getString(R.string.restart));
@@ -128,19 +128,14 @@ public class GameActivity extends AppCompatActivity {
         });
         selectedCards.clear();
 
-        for (ImageView button : cards)
-            button.setAlpha(.5f);
-        List<Integer[]> sets = vm.game.getSets();
-        Integer[] set = sets.get(generator.nextInt(sets.size()));
-        for (int index : set)
-            cards.get(index).setAlpha(1f);
-
         scoreView.setText(String.format(
                 Locale.getDefault(),
                 "%s · %s",
                 getString(R.string.score, vm.score),
                 getString(R.string.high, sp.getInt("score_1", 0))));
         timeCount.setText(R.string.empty_timer);
+
+        showSets();
     }
 
     private void onButtonClicked(ImageView button) {
@@ -199,5 +194,24 @@ public class GameActivity extends AppCompatActivity {
         editor.putInt("score_2", scores.get(1));
         editor.putInt("score_3", scores.get(2));
         editor.apply();
+    }
+
+    private void showSets() {
+        showSetsTimer = new CountDownTimer(1000, 1000) {
+            private final List<Integer[]> sets = vm.game.getSets();
+            private int index = 0;
+
+            public void onTick(long milliseconds) {
+                for (ImageView button : cards)
+                    button.setAlpha(.5f);
+                Integer[] set = sets.get(index++ % sets.size());
+                for (int index : set)
+                    cards.get(index).setAlpha(1f);
+            }
+
+            public void onFinish() {
+                showSetsTimer.start();
+            }
+        }.start();
     }
 }
