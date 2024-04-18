@@ -34,13 +34,13 @@ public class GameActivity extends AppCompatActivity {
     private List<ImageView> selectedCards;
     private CardViewModel vm;
 
+    private CountDownTimer timer;
+    private SharedPreferences sp;
+
     private TextView buttonPauseRestart;
     private TextView buttonStopExit;
     private TextView scoreView;
     private TextView timeCount;
-
-    private CountDownTimer timer;
-    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,8 @@ public class GameActivity extends AppCompatActivity {
         vm = new ViewModelProvider(this, new CardViewModelFactory(CARD_IDS.length, GAME_DURATION))
                 .get(CardViewModel.class);
 
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         buttonPauseRestart = findViewById(R.id.button_pause_restart);
         buttonPauseRestart.setOnClickListener(v -> pauseGame());
         buttonStopExit = findViewById(R.id.button_stop_exit);
@@ -65,8 +67,8 @@ public class GameActivity extends AppCompatActivity {
         timeCount = findViewById(R.id.time_count);
 
         refreshViews();
-
-        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (!vm.isGameRunning)
+            endGame();
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -80,7 +82,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        if (vm.isGameRunning)
+        if (timer != null)
             timer.cancel();
     }
 
