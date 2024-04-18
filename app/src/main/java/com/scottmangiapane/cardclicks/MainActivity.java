@@ -56,13 +56,11 @@ public class MainActivity extends AppCompatActivity {
     private void launchHelp() {
         Intent intent = new Intent(MainActivity.this, HelpActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
     }
 
     private void launchGame() {
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
     }
 
     private void showRatingDialog() {

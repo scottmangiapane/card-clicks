@@ -16,17 +16,13 @@ public class HelpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_help);
 
         findViewById(R.id.button_refresh).setOnClickListener(view -> refresh());
-        findViewById(R.id.button_return_to_menu).setOnClickListener(v -> {
-            finish();
-            overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
-        });
+        findViewById(R.id.button_return_to_menu).setOnClickListener(v -> finish());
         refresh();
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 finish();
-                overridePendingTransition(R.transition.slide_left_1, R.transition.slide_left_2);
             }
         });
     }

@@ -121,10 +121,7 @@ public class GameActivity extends AppCompatActivity {
         buttonPauseRestart.setText(getString(R.string.restart));
         buttonPauseRestart.setOnClickListener(v -> this.recreate());
         buttonStopExit.setText(getString(R.string.exit));
-        buttonStopExit.setOnClickListener(v -> {
-            finish();
-            overridePendingTransition(R.transition.slide_right_1, R.transition.slide_right_2);
-        });
+        buttonStopExit.setOnClickListener(v -> finish());
         selectedCards.clear();
 
         scoreView.setText(String.format(
