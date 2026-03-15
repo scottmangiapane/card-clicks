@@ -93,10 +93,10 @@ public class Deck {
             new Card(R.drawable.deck_squiggle_red_striped_3, Color.RED, Number.THREE, Shape.SQUIGGLE, Type.STRIPED),
     };
     public static boolean isSet(Card c1, Card c2, Card c3) {
-        return isSetTrait((Card card) -> card.color, c1, c2, c3)
-                && isSetTrait((Card card) -> card.number, c1, c2, c3)
-                && isSetTrait((Card card) -> card.shape, c1, c2, c3)
-                && isSetTrait((Card card) -> card.type, c1, c2, c3);
+        return isSetTrait(Card::color, c1, c2, c3)
+                && isSetTrait(Card::number, c1, c2, c3)
+                && isSetTrait(Card::shape, c1, c2, c3)
+                && isSetTrait(Card::type, c1, c2, c3);
     }
 
     private static boolean isSetTrait(Function<Card, Trait> fn, Card c1, Card c2, Card c3) {
@@ -110,10 +110,10 @@ public class Deck {
     public static Card getComplimentaryCard(Card c1, Card c2) {
         return Arrays
                 .stream(Deck.DECK)
-                .filter(c -> c.color == getComplimentaryTrait(c1.color, c2.color)
-                        && c.number == getComplimentaryTrait(c1.number, c2.number)
-                        && c.shape == getComplimentaryTrait(c1.shape, c2.shape)
-                        && c.type == getComplimentaryTrait(c1.type, c2.type))
+                .filter(c -> c.color() == getComplimentaryTrait(c1.color(), c2.color())
+                        && c.number() == getComplimentaryTrait(c1.number(), c2.number())
+                        && c.shape() == getComplimentaryTrait(c1.shape(), c2.shape())
+                        && c.type() == getComplimentaryTrait(c1.type(), c2.type()))
                 .findFirst()
                 .orElse(null);
     }
