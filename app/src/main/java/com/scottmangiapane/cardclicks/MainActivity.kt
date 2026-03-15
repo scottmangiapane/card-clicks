@@ -1,15 +1,11 @@
 package com.scottmangiapane.cardclicks
 
-import android.content.ActivityNotFoundException
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.button_help).setOnClickListener { launchHelp() }
         findViewById<View>(R.id.button_play).setOnClickListener { launchGame() }
         renderHighScores()
-        showRatingDialog()
     }
 
     public override fun onResume() {
@@ -61,33 +56,5 @@ class MainActivity : AppCompatActivity() {
     private fun launchGame() {
         val intent = Intent(this@MainActivity, GameActivity::class.java)
         startActivity(intent)
-    }
-
-    private fun showRatingDialog() {
-        if (sp.getInt("launch_count", 0) == 10) {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle(R.string.rate_card_clicks)
-                .setMessage(R.string.rate_message)
-                .setPositiveButton(R.string.sure) { _: DialogInterface?, _: Int ->
-                    try {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                "market://details?id=$packageName".toUri()
-                            )
-                        )
-                    } catch (_: ActivityNotFoundException) {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                ("https://play.google.com/store/apps/details?id="
-                                        + packageName).toUri()
-                            )
-                        )
-                    }
-                }
-                .setNegativeButton(R.string.no_thanks) { _: DialogInterface?, _: Int -> }
-                .create().show()
-        }
     }
 }

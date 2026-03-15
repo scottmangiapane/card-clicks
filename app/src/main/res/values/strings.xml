@@ -26,10 +26,4 @@
     <string name="instructions_long">Find sets of three cards where each trait (color, fill, number, and shape) is entirely different or entirely the same for each card in the set. Find as many as you can before the timer runs out.</string>
     <string name="example">EXAMPLE</string>
     <string name="return_to_menu">RETURN TO MENU</string>
-
-    <!-- Rate Dialog -->
-    <string name="rate_card_clicks">Rate Card Clicks</string>
-    <string name="rate_message">Would you like to rate Card Clicks on the Google Play store?</string>
-    <string name="sure">Sure</string>
-    <string name="no_thanks">No thanks</string>
 </resources>
