@@ -48,7 +48,11 @@ class GameActivity : AppCompatActivity() {
         refreshViews()
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (vm.isGameRunning) pauseGame()
+                if (vm.isGameRunning) {
+                    pauseGame()
+                } else {
+                    finish()
+                }
             }
         })
     }
