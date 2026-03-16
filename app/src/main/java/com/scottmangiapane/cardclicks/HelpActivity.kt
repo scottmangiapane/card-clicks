@@ -5,11 +5,14 @@ import android.view.View
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.scottmangiapane.cardclicks.game.Game
 
 class HelpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowInsetsControllerCompat(window, window.decorView).hide(WindowInsetsCompat.Type.statusBars())
         setContentView(R.layout.activity_help)
         findViewById<View>(R.id.button_refresh).setOnClickListener { refresh() }
         findViewById<View>(R.id.button_return_to_menu).setOnClickListener { finish() }

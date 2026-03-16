@@ -17,6 +17,8 @@ import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 import java.util.stream.Collectors
 import androidx.core.content.edit
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 
 class GameActivity : AppCompatActivity() {
     private lateinit var cards: List<ImageView>
@@ -32,6 +34,7 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowInsetsControllerCompat(window, window.decorView).hide(WindowInsetsCompat.Type.statusBars())
         setContentView(R.layout.activity_game)
         cards = Arrays
             .stream(CARD_IDS)
